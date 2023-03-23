@@ -10,14 +10,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:home',
         children: [
             {
-                id: 'previous request',
+                id: 'Previous Requests',
                 title: 'Previous Requests',
                 type: 'basic',
                 icon: 'feather:codesandbox',
-                link: '/requests',
+                link: '/requests/history',
             },
             {
-                id: 'new request',
+                id: 'New Request',
                 title: 'New Request',
                 type: 'basic',
                 icon: 'feather:upload-cloud',
@@ -33,11 +33,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:home',
         children: [
             {
-                id: 'profile',
+                id: 'Profile',
                 title: 'Profile',
                 type: 'basic',
                 icon: 'feather:user',
-                link: '/requests',
+                link: '/profile',
             },
         ],
     },

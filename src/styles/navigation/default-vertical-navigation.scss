@@ -1,0 +1,58 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Original Fuse Styles Path -> 'src\@fuse\components\navigation\vertical\styles\appearances\default.scss'
+/*  @ These styles 👇 are being used to override default fuse theme styles for the default vertical navigation 
+/* ----------------------------------------------------------------------------------------------------- */
+
+/* Aside, Basic, Collapsable */
+fuse-vertical-navigation-aside-item,
+fuse-vertical-navigation-basic-item,
+fuse-vertical-navigation-collapsable-item {
+
+    > .fuse-vertical-navigation-item-wrapper {
+
+        .fuse-vertical-navigation-item {
+
+            /* Active state */
+            &:not(.fuse-vertical-navigation-item-disabled) {
+
+                &.fuse-vertical-navigation-item-active,
+                &.fuse-vertical-navigation-item-active-forced {
+                    @apply dark:bg-tqeem-darkHighlightPrimaryAccent dark:bg-opacity-100 #{!important};
+
+                    .fuse-vertical-navigation-item-icon {
+                        @apply opacity-100;
+                    }
+
+                    .fuse-vertical-navigation-item-title {
+                        @apply opacity-100;
+                    }
+
+                    .fuse-vertical-navigation-item-subtitle {
+                        @apply opacity-100;
+                    }
+                }
+            }
+
+            /* Hover state */
+            &:not(.fuse-vertical-navigation-item-active-forced):not(.fuse-vertical-navigation-item-active):not(.fuse-vertical-navigation-item-disabled) {
+
+                &:hover {
+                    @apply dark:bg-tqeem-darkHighlightPrimaryAccent dark:bg-opacity-100 #{!important};
+
+                    .fuse-vertical-navigation-item-icon {
+                        @apply opacity-100;
+                    }
+
+                    .fuse-vertical-navigation-item-title,
+                    .fuse-vertical-navigation-item-arrow {
+                        @apply opacity-100;
+                    }
+
+                    .fuse-vertical-navigation-item-subtitle {
+                        @apply opacity-100;
+                    }
+                }
+            }
+        }
+    }
+}

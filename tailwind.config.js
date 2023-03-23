@@ -21,18 +21,30 @@ const customPalettes = {
  *
  * This color will be used as the accent color for the project
  */
+// const firefly = {
+//     50: "#f1fcfb",
+//     100: "#d1f6f5",
+//     200: "#a3eceb",
+//     300: "#6dd9db",
+//     400: "#3fbcc2",
+//     500: "#269da6",
+//     600: "#1c7b85",
+//     700: "#1a646b",
+//     800: "#1a4d55",
+//     900: "#0f272a",
+// }; 
 const firefly = {
-    50: "#f1fcfb",
-    100: "#d1f6f5",
-    200: "#a3eceb",
-    300: "#6dd9db",
-    400: "#3fbcc2",
-    500: "#269da6",
-    600: "#1c7b85",
+    50: "#F6F9F9",
+    100: "#ECF2F2",
+    200: "#ECF2F2",
+    300: "#9DC5C8",
+    400: "#7D9997",
+    500: "#26A69E",
+    600: "#1C857F",
     700: "#1a646b",
     800: "#1a4d55",
     900: "#0f272a",
-};
+    };
 
 /**
  * Themes

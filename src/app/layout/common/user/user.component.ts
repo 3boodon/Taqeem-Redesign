@@ -4,6 +4,7 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
     selector       : 'user',
@@ -19,6 +20,7 @@ export class UserComponent implements OnInit, OnDestroy
     /* eslint-enable @typescript-eslint/naming-convention */
 
     @Input() showAvatar: boolean = true;
+    isScreenSmall: boolean;
     user: User;
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -29,6 +31,7 @@ export class UserComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
+        private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _userService: UserService
     )
     {
@@ -51,6 +54,15 @@ export class UserComponent implements OnInit, OnDestroy
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
+            });
+
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({matchingAliases}) => {
+
+                // Check if the screen is small
+                this.isScreenSmall = !matchingAliases.includes('md');
             });
     }
 
