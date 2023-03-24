@@ -26,6 +26,7 @@
         "@angular/platform-browser-dynamic": "13.2.3",
         "@angular/router": "13.2.3",
         "@ngneat/transloco": "3.1.4",
+        "@tailwindcss/container-queries": "^0.1.0",
         "apexcharts": "3.33.1",
         "crypto-js": "3.3.0",
         "highlight.js": "11.4.0",

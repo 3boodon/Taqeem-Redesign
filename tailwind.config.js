@@ -351,6 +351,7 @@ const config = {
         require("@tailwindcss/typography")({ modifiers: ["sm", "lg"] }),
         require("@tailwindcss/aspect-ratio"),
         require("@tailwindcss/line-clamp"),
+        require('@tailwindcss/container-queries'),
     ],
 };
 
