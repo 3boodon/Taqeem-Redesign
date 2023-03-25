@@ -3,6 +3,8 @@ import { Route, RouterModule } from '@angular/router';
 import { NewRequestComponent } from './new-request.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { InqueryTypeComponent } from './inquery-type/inquery-type.component';
 import { InquiryInformationComponent } from './inquiry-information/inquiry-information.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -59,6 +61,8 @@ const newRequesrRoutes: Route[] = [
         MatSlideToggleModule,
         FuseAlertModule,
         MatCheckboxModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
         SharedModule
     ],
 })

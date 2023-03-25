@@ -103,12 +103,12 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
                 odometer: ['', Validators.required],
             }),
             step3: this._formBuilder.group({
-                byEmail          : this._formBuilder.group({
-                    companyNews     : [true],
-                    featuredProducts: [false],
-                    messages        : [true]
-                }),
-                pushNotifications: ['everything', Validators.required]
+                cardHolder: ['', Validators.required],
+                cardNumber: ['', Validators.required],
+                expirationDate: ['', Validators.required],
+                cvv: ['', Validators.required],
+                country: ['', Validators.required],
+                zipLocation: ['', Validators.required],
             })
         });
     }
