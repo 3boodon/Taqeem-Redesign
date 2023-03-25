@@ -1,0 +1,228 @@
+<div class="flex-auto">
+    <div class="bg-card rounded-2xl ">
+        <h1 class="p-8 font-bold text-tqeem-darkPrimaryAccent text-3xl flex items-center gap-[5px]">Complate The  Form <span class="text-primary font-medium text-sm bg-tqeem-borderPrimaryAccent px-[5px] py-[7px] rounded-md" >{{complate}}% </span> </h1>
+        <form
+            class="p-4  shadow rounded overflow-hidden"
+            [formGroup]="verticalStepperForm"
+        >
+            <mat-vertical-stepper [linear]="true" #verticalStepper>
+                <mat-step
+                    [formGroupName]="'step1'"
+                    [stepControl]="verticalStepperForm.get('step1')"
+                    #verticalStepperStep1
+                >
+                    <ng-template matStepLabel>Enter Serial Number</ng-template>
+                    <p class="my-6 font-medium text-primary ">
+                        Please Vehicle Serial Number*
+                    </p>
+                    <div class="flex">
+                        <mat-form-field class="flex-auto">
+                            <input
+                            class=" border-primary placeholder:text-tqeem-primaryGreyAccent"
+                                matInput
+                                [formControlName]="'serialNumber'"
+                                [placeholder]="'The Serial Number is'"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5 text-primary"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:badge-check'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+                   
+                    <div class="flex justify-start">
+                        <button
+                        class="px-8 text-primary border border-solid  border-primary bg-transparent  hover:bg-inherit"
+                        mat-flat-button
+                      
+                        type="button"
+                        matStepperPrevious
+                    >
+                        Cancel
+                    </button>
+                        <button
+                            class="px-8"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [disabled]="
+                                verticalStepperStep1.stepControl.invalid
+                            "
+                            type="button"
+                            matStepperNext
+                        >
+                            Next
+                        </button>
+                    </div>
+                </mat-step>
+
+                <mat-step
+                    [formGroupName]="'step2'"
+                    [stepControl]="verticalStepperForm.get('step2')"
+                    #verticalStepperStep2
+                >
+                    <ng-template matStepLabel>Enter Odometer Reading </ng-template>
+                    <p class="my-6 font-medium text-primary">
+                        Please Enter Odometer Reading *
+                    </p>
+                    <div class="flex flex-col gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <input
+                            class="border-primary placeholder:text-tqeem-primaryGreyAccent"
+                                matInput
+                                [formControlName]="'odometer'"
+                                [placeholder]="'Odometer Reading is '"
+                                required
+                            />
+                            <mat-icon
+                                class="icon-size-5 text-primary"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:truck'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+                
+                    <div class="flex justify-start">
+                        <button
+                        class="px-8 text-primary border border-solid  border-primary bg-transparent  hover:bg-inherit"
+                        mat-flat-button
+                        type="button"
+                        matStepperPrevious
+                    >
+                        Cancel
+                    </button>
+                        <button
+                            class="px-8"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [disabled]="
+                                verticalStepperStep2.stepControl.pristine ||
+                                verticalStepperStep2.stepControl.invalid
+                            "
+                            type="button"
+                            matStepperNext
+                        >
+                            Next
+                        </button>
+                    </div>
+                </mat-step>
+
+                <mat-step
+                    [formGroupName]="'step3'"
+                    [stepControl]="verticalStepperForm.get('step3')"
+                >
+                    <ng-template matStepLabel>Notifications</ng-template>
+                    <p class="my-6 font-medium">
+                        We'll always let you know about important changes, but
+                        you pick what else you want to hear about.
+                    </p>
+                    <div class="flex flex-col gt-sm:flex-row">
+                        <div class="flex flex-col">
+                            <span class="font-medium mb-2">By Email</span>
+                            <div
+                                class="flex flex-col"
+                                [formGroupName]="'byEmail'"
+                            >
+                                <mat-checkbox
+                                    class="mb-1"
+                                    [color]="'primary'"
+                                    [formControlName]="'companyNews'"
+                                >
+                                    Company News
+                                </mat-checkbox>
+                                <mat-checkbox
+                                    class="mb-1"
+                                    [color]="'primary'"
+                                    [formControlName]="'featuredProducts'"
+                                >
+                                    Featured Products
+                                </mat-checkbox>
+                                <mat-checkbox
+                                    [color]="'primary'"
+                                    [formControlName]="'messages'"
+                                >
+                                    Messages
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-8 gt-sm:mt-0 gt-sm:ml-16">
+                            <span class="font-medium mb-2"
+                                >Push Notifications</span
+                            >
+                            <mat-radio-group
+                                class="flex flex-col"
+                                [color]="'primary'"
+                                [formControlName]="'pushNotifications'"
+                            >
+                                <mat-radio-button
+                                    class="mb-2"
+                                    [value]="'everything'"
+                                >
+                                    Everything
+                                </mat-radio-button>
+                                <mat-radio-button
+                                    class="mb-2"
+                                    [value]="'just-good'"
+                                >
+                                    Just the good stuff
+                                </mat-radio-button>
+                                <mat-radio-button [value]="'no-push'">
+                                    No push notifications
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-8">
+                        <button
+                            class="px-8 mr-2"
+                            mat-flat-button
+                            [color]="'accent'"
+                            type="button"
+                            matStepperPrevious
+                        >
+                            Back
+                        </button>
+                        <button
+                            class="px-8"
+                            mat-flat-button
+                            [color]="'primary'"
+                            type="button"
+                            matStepperNext
+                        >
+                            Next
+                        </button>
+                    </div>
+                </mat-step>
+
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p class="my-6 font-medium">
+                        Thank you for completing our form! You can reset the
+                        form if you would like to change your information.
+                    </p>
+                    <div class="flex justify-end mt-8">
+                        <button
+                            class="px-8 mr-2"
+                            mat-flat-button
+                            [color]="'accent'"
+                            type="button"
+                            matStepperPrevious
+                        >
+                            Back
+                        </button>
+                        <button
+                            class="px-8"
+                            mat-flat-button
+                            [color]="'primary'"
+                            type="reset"
+                            (click)="verticalStepper.reset()"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                </mat-step>
+            </mat-vertical-stepper>
+        </form>
+    </div>
+</div>

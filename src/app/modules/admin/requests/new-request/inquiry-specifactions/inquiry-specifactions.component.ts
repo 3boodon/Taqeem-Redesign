@@ -1,21 +1,21 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {  ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector       : 'inquery-information',
-    templateUrl    : './inquery-information.component.html',
-    encapsulation  : ViewEncapsulation.None,
+    selector       : 'inquiry-specifactions',
+    templateUrl    : './inquiry-specifactions.component.html',
+    // encapsulation  : ViewEncapsulation.None,
     // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InqueryInformationComponent implements OnInit, OnDestroy
+export class InquirySpecifactionsComponent implements OnInit, OnDestroy
 {
     @ViewChild('messageInput') messageInput: ElementRef;
-
+    drawerMode: 'over' | 'side' = 'side';
+    drawerOpened: boolean = false;
     verticalStepperForm: FormGroup;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-    private _formBuilder: any;
 
     /**
      * Constructor
@@ -23,7 +23,9 @@ export class InqueryInformationComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _ngZone: NgZone
+        private _ngZone: NgZone,
+        private _formBuilder: FormBuilder
+
     )
     {
     }
@@ -39,27 +41,6 @@ export class InqueryInformationComponent implements OnInit, OnDestroy
      */
     @HostListener('input')
     @HostListener('ngModelChange')
-    private _resizeMessageInput(): void
-    {
-        // This doesn't need to trigger Angular's change detection by itself
-        this._ngZone.runOutsideAngular(() => {
-
-            setTimeout(() => {
-
-                // Set the height to 'auto' so we can correctly read the scrollHeight
-                this.messageInput.nativeElement.style.height = 'auto';
-
-                // Detect the changes so the height is applied
-                this._changeDetectorRef.detectChanges();
-
-                // Get the scrollHeight and subtract the vertical padding
-                this.messageInput.nativeElement.style.height = `${this.messageInput.nativeElement.scrollHeight}px`;
-
-                // Detect the changes one more time to apply the final height
-                this._changeDetectorRef.detectChanges();
-            });
-        });
-    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -77,14 +58,14 @@ export class InqueryInformationComponent implements OnInit, OnDestroy
             .subscribe(({matchingAliases}) => {
 
                 // Set the drawerMode if the given breakpoint is active
-                // if ( matchingAliases.includes('lg') )
-                // {
-                //     this.drawerMode = 'side';
-                // }
-                // else
-                // {
-                //     this.drawerMode = 'over';
-                // }
+                if ( matchingAliases.includes('lg') )
+                {
+                    this.drawerMode = 'side';
+                }
+                else
+                {
+                    this.drawerMode = 'over';
+                }
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();

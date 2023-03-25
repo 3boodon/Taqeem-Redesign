@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { InqueryInformationComponent } from './inquery-information/inquery-information.component';
+import { InquiryInformationComponent } from './inquiry-information/inquiry-information.component';
 import { InqueryTypeComponent } from './inquery-type/inquery-type.component';
 import { NewRequestComponent } from './new-request.component';
 
@@ -14,7 +14,7 @@ export const newRequesrRoutes: Route[] = [
                 children : [
                     {
                         path     : 'InqueryInformation',
-                        component: InqueryInformationComponent,
+                        component: InquiryInformationComponent,
                         // children : [
                         //     {
                         //         path   : 'InueryInformation',

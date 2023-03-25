@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-// import { Chat, Profile } from 'app/modules/admin/apps/chat/chat.types';
-// import { ChatService } from 'app/modules/admin/apps/chat/chat.service';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
     selector       : 'inquery-type',
@@ -11,20 +11,19 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class InqueryTypeComponent implements OnInit, OnDestroy
 {
-    // chats: Chat[];
-    drawerComponent: 'profile' | 'new-chat';
-    drawerOpened: boolean = false;
-    // filteredChats: Chat[];
-    // profile: Profile;
-    // selectedChat: Chat;
+    @ViewChild('drawer') drawer: MatDrawer;
+    drawerMode: 'over' | 'side' = 'side';
+    drawerOpened: boolean = true;
+    panels: any[] = [];
+    selectedPanel: string = 'inquiry-information';
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
      * Constructor
      */
     constructor(
-        // private _chatService: ChatService,
-        private _changeDetectorRef: ChangeDetectorRef
+        private _changeDetectorRef: ChangeDetectorRef,
+        private _fuseMediaWatcherService: FuseMediaWatcherService
     )
     {
     }
@@ -36,43 +35,46 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-
     ngOnInit(): void
-     {
+    {
+        // Setup available panels
+        this.panels = [
 
+            {
+                id         : 'inquiry-information',
+                icon       : 'heroicons_outline:user-circle',
+                title      : 'Inquiry about a information vehicle',
+                description: 'Search about a vehicle using serial number and Odometer reading'
+            },
+            {
+                id         : 'inquiry-specifactions',
+                icon       : 'heroicons_outline:credit-card',
+                title      : ' Inquiry about a vehicle specifactions',
+                description: 'Search about a vehicle using its specifications and Odometer reading'
+            }
+        ];
+
+        // Subscribe to media changes
+        this._fuseMediaWatcherService.onMediaChange$
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(({matchingAliases}) => {
+
+                // Set the drawerMode and drawerOpened
+                if ( matchingAliases.includes('lg') )
+                {
+                    this.drawerMode = 'side';
+                    this.drawerOpened = true;
+                }
+                else
+                {
+                    this.drawerMode = 'over';
+                    this.drawerOpened = false;
+                }
+
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
     }
-    // ngOnInit(): void
-    // {
-    //     // Chats
-    //     this._chatService.chats$
-    //         .pipe(takeUntil(this._unsubscribeAll))
-    //         .subscribe((chats: Chat[]) => {
-    //             this.chats = this.filteredChats = chats;
-
-    //             // Mark for check
-    //             this._changeDetectorRef.markForCheck();
-    //         });
-
-    //     // Profile
-    //     this._chatService.profile$
-    //         .pipe(takeUntil(this._unsubscribeAll))
-    //         .subscribe((profile: Profile) => {
-    //             this.profile = profile;
-
-    //             // Mark for check
-    //             this._changeDetectorRef.markForCheck();
-    //         });
-
-    //     // Selected chat
-    //     this._chatService.chat$
-    //         .pipe(takeUntil(this._unsubscribeAll))
-    //         .subscribe((chat: Chat) => {
-    //             this.selectedChat = chat;
-
-    //             // Mark for check
-    //             this._changeDetectorRef.markForCheck();
-    //         });
-    // }
 
     /**
      * On destroy
@@ -89,44 +91,29 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
 
     /**
-     * Filter the chats
+     * Navigate to the panel
      *
-     * @param query
+     * @param panel
      */
-    filterChats(query: string): void
+    goToPanel(panel: string): void
     {
-        // Reset the filter
-        if ( !query )
+        this.selectedPanel = panel;
+
+        // Close the drawer on 'over' mode
+        if ( this.drawerMode === 'over' )
         {
-            // this.filteredChats = this.chats;
-            return;
+            this.drawer.close();
         }
-
-        // this.filteredChats = this.chats.filter(chat => chat.contact.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     /**
-     * Open the new chat sidebar
+     * Get the details of the panel
+     *
+     * @param id
      */
-    openNewChat(): void
+    getPanelInfo(id: string): any
     {
-        this.drawerComponent = 'new-chat';
-        this.drawerOpened = true;
-
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
-    }
-
-    /**
-     * Open the profile sidebar
-     */
-    openProfile(): void
-    {
-        this.drawerComponent = 'profile';
-        this.drawerOpened = true;
-
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
+        return this.panels.find(panel => panel.id === id);
     }
 
     /**
