@@ -65,12 +65,14 @@
                 </mat-step>
 
                 <mat-step
+                class="animate-spin"
                     [formGroupName]="'step2'"
+                    [editable]="isEditable"
                     [stepControl]="verticalStepperForm.get('step2')"
                     #verticalStepperStep2
                 >
-                    <ng-template matStepLabel
-                        >Enter Odometer Reading
+                    <ng-template matStepLabel >
+                        Enter Odometer Reading
                     </ng-template>
                     <p class="my-6 font-medium text-primary">
                         Please Enter Odometer Reading *
@@ -279,8 +281,12 @@
                     </div>
                 </mat-step>
 
-                <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
+                <mat-step
+                [editable]="isEditable"
+                >
+                    <ng-template matStepLabel>
+                        Done
+                    </ng-template>
 
                     <div
                         class="max-w-lg border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"

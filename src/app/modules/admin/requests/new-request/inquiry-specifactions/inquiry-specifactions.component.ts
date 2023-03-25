@@ -11,11 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class InquirySpecifactionsComponent implements OnInit, OnDestroy
 {
-    @ViewChild('messageInput') messageInput: ElementRef;
     drawerMode: 'over' | 'side' = 'side';
+  public  complate: number=25;
     drawerOpened: boolean = false;
     verticalStepperForm: FormGroup;
+    isEditable = false;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    // private _formBuilder: any;
 
     /**
      * Constructor
@@ -25,7 +27,6 @@ export class InquirySpecifactionsComponent implements OnInit, OnDestroy
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _ngZone: NgZone,
         private _formBuilder: FormBuilder
-
     )
     {
     }
@@ -46,65 +47,56 @@ export class InquirySpecifactionsComponent implements OnInit, OnDestroy
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * On init
-     */
-    ngOnInit(): void
-    {
-
-        // Subscribe to media changes
-        this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
-
-                // Set the drawerMode if the given breakpoint is active
-                if ( matchingAliases.includes('lg') )
-                {
-                    this.drawerMode = 'side';
-                }
-                else
-                {
-                    this.drawerMode = 'over';
-                }
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-              // Vertical stepper form
-        this.verticalStepperForm = this._formBuilder.group({
-            step1: this._formBuilder.group({
-                email   : ['', [Validators.required, Validators.email]],
-                country : ['', Validators.required],
-                language: ['', Validators.required]
-            }),
-            step2: this._formBuilder.group({
-                firstName: ['', Validators.required],
-                lastName : ['', Validators.required],
-                userName : ['', Validators.required],
-                about    : ['']
-            }),
-            step3: this._formBuilder.group({
-                byEmail          : this._formBuilder.group({
-                    companyNews     : [true],
-                    featuredProducts: [false],
-                    messages        : [true]
-                }),
-                pushNotifications: ['everything', Validators.required]
-            })
-        });
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
-    }
-
+     /**
+      * On init
+      */
+     ngOnInit(): void
+     {
+         // Subscribe to media changes
+         this._fuseMediaWatcherService.onMediaChange$
+             .pipe(takeUntil(this._unsubscribeAll))
+             .subscribe(({matchingAliases}) => {
+                 // Set the drawerMode if the given breakpoint is active
+                 if ( matchingAliases.includes('lg') )
+                 {
+                     this.drawerMode = 'side';
+                 }
+                 else
+                 {
+                     this.drawerMode = 'over';
+                 }
+                 // Mark for check
+                 this._changeDetectorRef.markForCheck();
+             });
+               // Vertical stepper form
+         this.verticalStepperForm = this._formBuilder.group({
+             step1: this._formBuilder.group({
+                vehicleMaker   : ['', [Validators.required]],
+                vehicleModel   : ['', [Validators.required]],
+                vehicleColor   : ['', [Validators.required]],
+             }),
+             step2: this._formBuilder.group({
+                 odometer: ['', Validators.required],
+             }),
+             step3: this._formBuilder.group({
+                 cardHolder: ['', Validators.required],
+                 cardNumber: ['', Validators.required],
+                 expirationDate: ['', Validators.required],
+                 cvv: ['', Validators.required],
+                 country: ['', Validators.required],
+                 zipLocation: ['', Validators.required],
+             })
+         });
+     }
+     /**
+      * On destroy
+      */
+     ngOnDestroy(): void
+     {
+         // Unsubscribe from all subscriptions
+         this._unsubscribeAll.next(null);
+         this._unsubscribeAll.complete();
+     }
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------

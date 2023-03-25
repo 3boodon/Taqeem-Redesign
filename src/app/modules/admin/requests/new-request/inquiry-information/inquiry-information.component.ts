@@ -17,6 +17,7 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
   public  complate: number=25;
     drawerOpened: boolean = false;
     verticalStepperForm: FormGroup;
+    isEditable = false;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     // private _formBuilder: any;
 
