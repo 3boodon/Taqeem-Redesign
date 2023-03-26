@@ -1,0 +1,124 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Original Fuse Styles Path -> 'src\@fuse\styles\overrides\angular-material.scss'
+/*  @ These styles 👇 are being used to override default fuse theme styles for the changing angular tabs
+/* ----------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Tabs
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-tab-group {
+
+    /* No header */
+    &.fuse-mat-no-header {
+
+        .mat-tab-header {
+            height: 0 !important;
+            max-height: 0 !important;
+            border: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+    }
+
+    .mat-tab-header {
+       @apply border-b border-tqeem-borderPrimaryAccent border-solid #{'!important'};
+
+        .mat-tab-label-container {
+            padding: 0;
+
+            .mat-tab-list {
+
+                .mat-tab-labels {
+
+                    .mat-tab-label {
+                        min-width: 0 !important;
+                        height: 60px !important;
+                        padding: 0 30px !important;
+                        border-radius: 0 !important;
+                        @apply text-secondary;
+
+                        &.mat-tab-label-active {
+                            @apply bg-transparent   #{'!important'};
+                            @apply text-default #{'!important'};
+                        }
+
+                        + .mat-tab-label {
+                            margin-left: 4px;
+                        }
+
+                        .mat-tab-label-content {
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+                .mat-ink-bar {
+                    display: block !important;
+                }
+            }
+        }
+    }
+
+    .mat-tab-body-content {
+        padding: 24px 0;
+    }
+}
+
+.mat-tab-label {
+    opacity: 1 !important;
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Paginator
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-paginator {
+
+    .mat-paginator-container {
+        padding: 8px 16px;
+        justify-content: space-between;
+
+        @screen sm {
+            justify-content: space-between;
+        }
+
+        /* Page size select */
+        .mat-paginator-page-size {
+            align-items: center;
+            min-height: 40px;
+            margin: 8px;
+
+            .mat-paginator-page-size-label {
+                display: none;
+                margin-right: 12px;
+
+                @screen sm {
+                    display: block;
+                }
+            }
+
+            .mat-paginator-page-size-select {
+                margin: 0;
+
+                .mat-form-field-wrapper {
+                    margin-bottom: 0;
+
+                    .mat-form-field-flex {
+                        min-height: 32px;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+
+        /* Range actions */
+        .mat-paginator-range-actions {
+            margin: 8px 0;
+
+            .mat-paginator-range-label {
+                margin-right: 16px;
+            }
+        }
+    }
+}

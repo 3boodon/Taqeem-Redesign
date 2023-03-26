@@ -1,0 +1,188 @@
+        <!-- Data Table -->
+        <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        (matSortChange)="announceSortChange($event)"
+        class="w-full table-auto text-start"
+    >
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>
+                ID
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.id }}
+            </td>
+        </ng-container>
+
+        <!-- Maker Column -->
+        <ng-container matColumnDef="maker">
+            <th mat-header-cell *matHeaderCellDef>
+                Maker
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <div
+                    class="flex max-w-32 items-center font-semibold text-tqeem-darkPrimaryAccent"
+                >
+                    <span class="grow">{{
+                        element.maker
+                    }}</span>
+                    <img
+                        src="assets/images/vehicles-brands/{{
+                            element.maker
+                                | lowercase
+                        }}.png"
+                        class="aspect-1 w-6 object-contain"
+                        width="30"
+                        alt="{{ element.maker }}"
+                    />
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Model Column -->
+        <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef>
+                Model
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.model }}
+            </td>
+        </ng-container>
+
+        <!-- Year Column -->
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef>
+                Year
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.year }}
+            </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="color">
+            <th mat-header-cell *matHeaderCellDef>
+                Color
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <div
+                    class="flex items-center gap-2 text-rose-600"
+                >
+                    <div
+                        class="h-2 w-2 rounded-full bg-rose-500"
+                    ></div>
+                    <span>{{
+                        element.color 
+                    }}</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Serial Number Column -->
+        <ng-container matColumnDef="serial">
+            <th mat-header-cell *matHeaderCellDef>
+                Serial Number
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.serialNumber }}
+            </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                Status
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span
+                    class="flex h-[30px] max-w-fit place-items-center rounded-full bg-tqeem-Status-successAccent px-3 text-tqeem-Status-success"
+                >
+                    {{ element.status }}
+                </span>
+            </td>
+        </ng-container>
+
+        <!-- Plate Number Column -->
+        <ng-container matColumnDef="plateNumber">
+            <th mat-header-cell *matHeaderCellDef>
+                Plate Number
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.plateNumber }}
+            </td>
+        </ng-container>
+
+        <!-- Plate Type Column -->
+        <ng-container matColumnDef="plateType">
+            <th mat-header-cell *matHeaderCellDef>
+                Plate Type
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.plateType }}
+            </td>
+        </ng-container>
+
+        <!-- Odometer Reading Column -->
+        <ng-container matColumnDef="omr">
+            <th mat-header-cell *matHeaderCellDef>
+                Odometer Reading
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.omr }}
+            </td>
+        </ng-container>
+
+        <!-- Price Reading Column -->
+        <ng-container matColumnDef="price">
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by Price"
+            >
+                Price
+            </th>
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="font-semibold text-tqeem-darkPrimaryAccent"
+            >
+                {{ element.price }}
+            </td>
+        </ng-container>
+
+        <!-- Created At Reading Column -->
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>
+                Created At
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.createdAt.date }} at
+                {{ element.createdAt.time }}
+            </td>
+        </ng-container>
+
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns"
+            class="bg-tqeem-highlightPrimaryAccent"
+        ></tr>
+        <tr
+            mat-row
+            class="cursor-pointer transition-colors hover:bg-tqeem-highlightPrimaryAccent"
+            (click)="clickedRow()"
+            *matRowDef="
+                let row;
+                columns: displayedColumns
+            "
+        ></tr>
+    </table>
+    <!-- Pagination -->
+    <mat-paginator
+        [pageSizeOptions]="[5, 6, 8]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>

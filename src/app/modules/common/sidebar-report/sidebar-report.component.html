@@ -1,0 +1,140 @@
+<div class="flex flex-auto flex-col gap-6 p-5" fuseScrollbar>
+    <header class="items-center-justify-between flex">
+        <!-- Header Title -->
+        <div class="grow">
+            <h3 class="text-xl font-bold text-tqeem-darkPrimaryAccent">
+                Vehicle Report
+            </h3>
+            <span
+                class="text-sm font-medium text-tqeem-primaryGreyAccent [&_span]:text-tqeem-darkPrimaryAccent"
+                >Created At <span>20 May,2023 </span> at
+                <span>02:00pm</span></span
+            >
+        </div>
+        <!-- Close button -->
+        <div class="flex items-center justify-end">
+            <button mat-icon-button routerLink="['../../']" (click)="close()">
+                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+            </button>
+        </div>
+    </header>
+
+    <!-- Estimated Price -->
+    <section
+        class="flex items-center gap-4 rounded-xl bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo p-3"
+    >
+        <!-- Brand Image -->
+        <div
+            class="grid aspect-1 h-[58px] place-items-center rounded-lg bg-white"
+        >
+            <img
+                src="assets/images/vehicles-brands/bmw.png"
+                class="h-7 w-7 object-contain"
+                alt="Mazda"
+            />
+        </div>
+        <!-- Price -->
+        <div class="flex grow flex-col">
+            <span class="text-md font-medium text-white">Estimated Price</span>
+            <span class="text-2xl font-bold text-white">230,000 SAR</span>
+        </div>
+    </section>
+
+    <!-- Vehicle Report Details -->
+    <section class="flex flex-col gap-3">
+        <!-- Header Title -->
+        <header class="items-center-justify-between flex">
+            <div class="grow">
+                <h3 class="text-lg font-bold text-tqeem-darkPrimaryAccent">
+                    Vehicle Report
+                </h3>
+                <span
+                    class="text-md font-medium text-tqeem-primaryGreyAccent"
+                    >All details about vehicle</span
+                >
+            </div>
+        </header>
+        <!-- Export Buttons -->
+        <div class="flex shrink-0 items-center gap-3">
+            <button
+                class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                mat-flat-button
+                routerLink="'./..'"
+            >
+                <img src="" alt="" />
+                Export as PDF
+            </button>
+            <button
+                class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                mat-flat-button
+                routerLink="'./..'"
+            >
+                <img src="" alt="" />
+                Export as EXCEL
+            </button>
+        </div>
+
+        <!-- Info -->
+        <div class="flex flex-col  border-b divide-y font-medium">
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Maker</div>
+                <div>Toyota</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Model</div>
+                <div>Civik</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Year</div>
+                <div>1998</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Color</div>
+                <div>Red</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Maker</div>
+                <div>Toyota</div>
+            </div>
+        </div>
+    </section>
+    <!-- Request Details -->
+    <section class="flex flex-col gap-3">
+        <!-- Header Title -->
+        <header class="items-center-justify-between flex">
+            <div class="grow">
+                <h3 class="text-lg font-bold text-tqeem-darkPrimaryAccent">
+                    Vehicle Report
+                </h3>
+                <span
+                    class="text-md font-medium text-tqeem-primaryGreyAccent"
+                    >All details about vehicle</span
+                >
+            </div>
+        </header>
+     
+        <!-- Info -->
+        <div class="flex flex-col  border-b divide-y font-medium">
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Maker</div>
+                <div>Toyota</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Model</div>
+                <div>Civik</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Year</div>
+                <div>1998</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Color</div>
+                <div>Red</div>
+            </div>
+            <div class="flex items-center justify-between py-3">
+                <div class="text-secondary">Maker</div>
+                <div>Toyota</div>
+            </div>
+        </div>
+    </section>
+</div>

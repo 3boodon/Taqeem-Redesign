@@ -1,65 +1,110 @@
-<div
-    class="absolute inset-0 flex flex-col min-w-0"
-    fuseScrollbar="true"
-    [fuseScrollbarOptions]="{
-        wheelPropagation: false,
-        suppressScrollX: true
-    }"
->
-    <!-- Header // TODO: This header should be converted to a component -->
-    <header
-        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-white dark:bg-transparent"
-    >
-        <div class="flex-1 min-w-0">
-            <!-- Breadcrumbs -->
-            <div>
-                <div class="flex flex-wrap items-center font-medium">
+<div class="absolute inset-0 flex min-w-0 flex-col overflow-hidden">
+    <mat-drawer-container class="h-full flex-auto" (backdropClick)="onBackdropClicked()">
+        <!-- Drawer -->
+        <mat-drawer
+            class="w-full dark:bg-gray-900 sm:w-100"
+            [mode]="isScreenSmall ? 'side' : 'over'"
+            [autoFocus]="false"
+            [opened]="reportMode"
+            [position]="'end'"
+            #matDrawer
+        >
+            <!-- Demo sidebar -->
+            <app-sidebar-report
+                (sidebarClose)="closeSidebar($event)"
+            ></app-sidebar-report>
+        </mat-drawer>
+
+        <!-- Drawer content -->
+        <mat-drawer-content class="flex flex-col overflow-hidden">
+            <!-- Header // TODO: This header should be converted to a component -->
+            <header
+                class="flex flex-0 flex-col bg-white p-6 pb-22 dark:bg-transparent sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:pt-12 sm:pb-28"
+            >
+                <div class="min-w-0 flex-1">
+                    <!-- Breadcrumbs -->
                     <div>
-                        <a class="whitespace-nowrap text-primary-500"
-                            >Requests</a
-                        >
+                        <div class="flex flex-wrap items-center font-medium">
+                            <div>
+                                <a class="whitespace-nowrap text-primary-500"
+                                    >Requests</a
+                                >
+                            </div>
+                            <div
+                                class="ml-1 flex items-center whitespace-nowrap"
+                            >
+                                <mat-icon
+                                    class="text-tqeem-primaryGreyAccent icon-size-5"
+                                    [svgIcon]="'heroicons_solid:chevron-right'"
+                                ></mat-icon>
+                                <span class="ml-1 text-tqeem-primaryGreyAccent"
+                                    >Previous Requests</span
+                                >
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center ml-1 whitespace-nowrap">
-                        <mat-icon
-                            class="icon-size-5 text-tqeem-primaryGreyAccent"
-                            [svgIcon]="'heroicons_solid:chevron-right'"
-                        ></mat-icon>
-                        <span class="ml-1 text-tqeem-primaryGreyAccent"
-                            >Previous Requests</span
+                    <!-- Title -->
+                    <div class="mt-2">
+                        <h2
+                            class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
                         >
+                            Previous Requests
+                        </h2>
                     </div>
                 </div>
-            </div>
-            <!-- Title -->
-            <div class="mt-2">
-                <h2
-                    class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
-                >
-                    Previous Requests
-                </h2>
-            </div>
-        </div>
-        <!-- Actions -->
-        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
-            <button
-                class="ml-3 bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white"
-                mat-flat-button
-                [routerLink]="'./../new'"
-            >
-                <mat-icon
-                    class="icon-size-5 mr-2"
-                    [svgIcon]="'feather:plus'"
-                ></mat-icon>
-                New Request
-            </button>
-        </div>
-    </header>
+                <!-- Actions -->
+                <div class="mt-6 flex shrink-0 items-center sm:mt-0 sm:ml-4">
+                    <button
+                        class="ml-3 bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white"
+                        mat-flat-button
+                        [routerLink]="'./../new'"
+                    >
+                        <mat-icon
+                            class="mr-2 icon-size-5"
+                            [svgIcon]="'feather:plus'"
+                        ></mat-icon>
+                        New Request
+                    </button>
+                </div>
+            </header>
 
-    <!-- Main // TODO: This header should be converted to a component -->
-    <main
-        class="flex-auto -mt-16 p-6 sm:p-10 shadow bg-tqeem-bodyPrimaryAccent"
-    >
-        <!-- CONTENT GOES HERE -->
-        <div class="h-400 min-h-400 max-h-400"></div>
-    </main>
+            <!-- Main // TODO: This header should be converted to a component -->
+            <main
+                class="-mt-16 flex flex-auto flex-col items-center bg-tqeem-bodyPrimaryAccent p-6 shadow sm:p-10"
+            >
+                <!-- CONTENT GOES HERE -->
+                <div
+                    class="min-w-full flex-auto overflow-hidden rounded-xl bg-white"
+                >
+                    <!-- Tabs -->
+                    <mat-tab-group animationDuration="0ms" dynamicHeight="true">
+                        <mat-tab label="All">
+                            <!-- Main Table -->
+                            <ng-template matTabContent>
+                                <app-requests-table
+                                    (selectRow)="getDataFromSelectedRow($event)"
+                                ></app-requests-table>
+                            </ng-template>
+                        </mat-tab>
+                        <mat-tab
+                            label="Vehicle Information"
+                            class="rounded-none"
+                        >
+                            <app-requests-table
+                                (selectRow)="getDataFromSelectedRow($event)"
+                            ></app-requests-table>
+                        </mat-tab>
+                        <mat-tab
+                            label="Vehicle Specifications"
+                            class="rounded-none"
+                        >
+                            <app-requests-table
+                                (selectRow)="getDataFromSelectedRow($event)"
+                            ></app-requests-table>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </main>
+        </mat-drawer-content>
+    </mat-drawer-container>
 </div>

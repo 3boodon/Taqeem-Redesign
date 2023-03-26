@@ -4,4 +4,5 @@
 /*  @  Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
 
+@import '/src/styles/overrides/angular-material';
 @import '/src/styles/navigation/default-vertical-navigation';
