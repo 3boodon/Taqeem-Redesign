@@ -1,5 +1,70 @@
-        <!-- Data Table -->
-        <table
+<div class="@container/table">
+    <!-- Filters & Search & Actions -->
+    <div class="flex justify-between px-6 pb-6">
+        <div class="flex grow flex-wrap items-center gap-3">
+            <!-- Search -->
+            <mat-form-field class="sm-height mb-0 grow basis-90">
+                <input
+                    class="border-tqeem-borderPrimaryAccent placeholder:text-tqeem-primaryGreyAccent"
+                    matInput
+                    [formControlName]="'serialNumber'"
+                    [placeholder]="'Name, Phone, Company.....'"
+                    required
+                />
+                <mat-icon
+                    class="text-primary icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:search'"
+                ></mat-icon>
+            </mat-form-field>
+            <!-- Filter Button -->
+            <button
+                class="min-h-[37px] grow basis-1/4 rounded-md bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white @[540px]/table:grow-0"
+                mat-flat-button
+            >
+                <mat-icon
+                    class="mr-2 icon-size-5"
+                    [svgIcon]="'heroicons_outline:adjustments'"
+                ></mat-icon>
+                Filters
+            </button>
+            <!-- Export Buttons -->
+            <div
+                class="flex shrink-0 grow basis-90 items-center gap-3 @[900px]/table:grow-0"
+            >
+                <button
+                    class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                    mat-flat-button
+                    routerLink="'./..'"
+                >
+                    <div class="flex items-center gap-2">
+                        <img
+                            class="h-6"
+                            src="assets/icons/pdf.png"
+                            alt="PDF Icon"
+                        />
+                        Export as PDF
+                    </div>
+                </button>
+                <button
+                    class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                    mat-flat-button
+                    routerLink="'./..'"
+                >
+                    <div class="flex items-center gap-2">
+                        <img
+                            class="w-6"
+                            src="assets/icons/excel.png"
+                            alt="Excel Icon"
+                        />
+                        Export as EXCEL
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table -->
+    <table
         mat-table
         [dataSource]="dataSource"
         matSort
@@ -8,30 +73,23 @@
     >
         <!-- ID Column -->
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>
-                ID
-            </th>
-            <td mat-cell *matCellDef="let element">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element" class="group-hover:text-tqeem-darkPrimaryAccent transition-colors">
                 {{ element.id }}
             </td>
         </ng-container>
 
         <!-- Maker Column -->
         <ng-container matColumnDef="maker">
-            <th mat-header-cell *matHeaderCellDef>
-                Maker
-            </th>
+            <th mat-header-cell *matHeaderCellDef>Maker</th>
             <td mat-cell *matCellDef="let element">
                 <div
-                    class="flex max-w-32 items-center font-semibold text-tqeem-darkPrimaryAccent"
+                    class="flex max-w-32 items-center font-semibold text-tqeem-darkPrimaryAccent ltr:mr-2 rtl:ml-2"
                 >
-                    <span class="grow">{{
-                        element.maker
-                    }}</span>
+                    <span class="grow">{{ element.maker }}</span>
                     <img
                         src="assets/images/vehicles-brands/{{
-                            element.maker
-                                | lowercase
+                            element.maker | lowercase
                         }}.png"
                         class="aspect-1 w-6 object-contain"
                         width="30"
@@ -43,59 +101,93 @@
 
         <!-- Model Column -->
         <ng-container matColumnDef="model">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[609px]/table:table-cell"
+            >
                 Model
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[609px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.model }}
             </td>
         </ng-container>
 
         <!-- Year Column -->
         <ng-container matColumnDef="year">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[609px]/table:table-cell"
+            >
                 Year
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[609px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.year }}
             </td>
         </ng-container>
 
         <!-- Color Column -->
         <ng-container matColumnDef="color">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[717px]/table:table-cell"
+            >
                 Color
             </th>
-            <td mat-cell *matCellDef="let element">
-                <div
-                    class="flex items-center gap-2 text-rose-600"
-                >
-                    <div
-                        class="h-2 w-2 rounded-full bg-rose-500"
-                    ></div>
-                    <span>{{
-                        element.color 
-                    }}</span>
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[717px]/table:table-cell"
+            >
+                <div class="flex items-center gap-2 text-rose-600">
+                    <div class="h-2 w-2 rounded-full bg-rose-500"></div>
+                    <span>{{ element.color }}</span>
                 </div>
             </td>
         </ng-container>
 
         <!-- Serial Number Column -->
         <ng-container matColumnDef="serial">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[955px]/table:table-cell"
+            >
                 Serial Number
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[955px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.serialNumber }}
             </td>
         </ng-container>
 
         <!-- Status Column -->
         <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[717px]/table:table-cell"
+            >
                 Status
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[717px]/table:table-cell"
+            >
                 <span
                     class="flex h-[30px] max-w-fit place-items-center rounded-full bg-tqeem-Status-successAccent px-3 text-tqeem-Status-success"
                 >
@@ -106,30 +198,54 @@
 
         <!-- Plate Number Column -->
         <ng-container matColumnDef="plateNumber">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[1130px]/table:table-cell"
+            >
                 Plate Number
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[1130px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.plateNumber }}
             </td>
         </ng-container>
 
         <!-- Plate Type Column -->
         <ng-container matColumnDef="plateType">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[1230px]/table:table-cell"
+            >
                 Plate Type
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[1230px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.plateType }}
             </td>
         </ng-container>
 
         <!-- Odometer Reading Column -->
         <ng-container matColumnDef="omr">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[717px]/table:table-cell"
+            >
                 Odometer Reading
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[717px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+            >
                 {{ element.omr }}
             </td>
         </ng-container>
@@ -155,10 +271,18 @@
 
         <!-- Created At Reading Column -->
         <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="hidden @[1230px]/table:table-cell"
+            >
                 Created At
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="hidden @[1230px]/table:table-cell"
+            >
                 {{ element.createdAt.date }} at
                 {{ element.createdAt.time }}
             </td>
@@ -171,18 +295,16 @@
         ></tr>
         <tr
             mat-row
-            class="cursor-pointer transition-colors hover:bg-tqeem-highlightPrimaryAccent"
+            class="cursor-pointer transition-colors group hover:bg-tqeem-highlightPrimaryAccent "
             (click)="clickedRow()"
-            *matRowDef="
-                let row;
-                columns: displayedColumns
-            "
+            *matRowDef="let row; columns: displayedColumns"
         ></tr>
     </table>
     <!-- Pagination -->
     <mat-paginator
-        [pageSizeOptions]="[5, 6, 8]"
+        [pageSizeOptions]="[15, 25, 50]"
         showFirstLastButtons
         aria-label="Select page of periodic elements"
     >
     </mat-paginator>
+</div>

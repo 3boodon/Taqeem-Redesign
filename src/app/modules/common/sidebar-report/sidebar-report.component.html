@@ -1,4 +1,4 @@
-<div class="flex flex-auto flex-col gap-6 p-5" fuseScrollbar>
+<div class="flex flex-auto flex-col gap-6 p-5" >
     <header class="items-center-justify-between flex">
         <!-- Header Title -->
         <div class="grow">
@@ -61,16 +61,21 @@
                 mat-flat-button
                 routerLink="'./..'"
             >
-                <img src="" alt="" />
+            <div class="flex gap-2 items-center">
+
+                <img class="h-6" src="assets/icons/pdf.png" alt="PDF Icon" />
                 Export as PDF
+            </div>
             </button>
             <button
                 class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                 mat-flat-button
                 routerLink="'./..'"
             >
-                <img src="" alt="" />
+            <div class="flex gap-2 items-center">
+                <img class="w-6" src="assets/icons/excel.png" alt="Excel Icon" />
                 Export as EXCEL
+                </div>
             </button>
         </div>
 
