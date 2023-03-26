@@ -5,6 +5,7 @@ import { FuseScrollbarModule } from '@fuse/directives/scrollbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -12,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
         FuseScrollbarModule,
         ReactiveFormsModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
+
     ],
     exports: [
         CommonModule,
@@ -20,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
         FuseScrollbarModule,
         ReactiveFormsModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
+
     ]
 })
 export class SharedModule
