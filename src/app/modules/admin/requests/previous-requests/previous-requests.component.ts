@@ -15,7 +15,7 @@ import { PeriodicElement } from '../../../common/requests-table/requests-table.d
 })
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export class PreviousRequestsComponent implements OnInit {
-    reportMode: boolean = false;
+    opened: boolean = false;
     isScreenSmall: boolean;
     vehicleReport: PeriodicElement;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -48,16 +48,15 @@ export class PreviousRequestsComponent implements OnInit {
      * On backdrop clicked
      */
     onBackdropClicked(): void {
-        this.reportMode = false;
+        this.opened = false;
     }
 
     public getDataFromSelectedRow($event) {
-        this.reportMode = true;
+        this.opened = true;
         this.vehicleReport = $event;
     }
 
     public closeSidebar($event) {
-        this.reportMode = $event;
-        console.log($event);
+        this.opened = $event;
     }
 }

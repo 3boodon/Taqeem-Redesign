@@ -19,7 +19,6 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
     verticalStepperForm: FormGroup;
     isEditable = false;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-    // private _formBuilder: any;
 
     /**
      * Constructor
@@ -27,44 +26,10 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _ngZone: NgZone,
         private _formBuilder: FormBuilder
     )
     {
     }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Decorated methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Resize on 'input' and 'ngModelChange' events
-     *
-     * @private
-     */
-    // @HostListener('input')
-    // @HostListener('ngModelChange')
-    // private _resizeMessageInput(): void
-    // {
-    //     // This doesn't need to trigger Angular's change detection by itself
-    //     this._ngZone.runOutsideAngular(() => {
-
-    //         setTimeout(() => {
-
-    //             // Set the height to 'auto' so we can correctly read the scrollHeight
-    //             this.messageInput.nativeElement.style.height = 'auto';
-
-    //             // Detect the changes so the height is applied
-    //             this._changeDetectorRef.detectChanges();
-
-    //             // Get the scrollHeight and subtract the vertical padding
-    //             this.messageInput.nativeElement.style.height = `${this.messageInput.nativeElement.scrollHeight}px`;
-
-    //             // Detect the changes one more time to apply the final height
-    //             this._changeDetectorRef.detectChanges();
-    //         });
-    //     });
-    // }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks

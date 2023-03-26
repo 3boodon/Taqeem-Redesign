@@ -4,11 +4,12 @@
         (backdropClick)="onBackdropClicked()"
     >
         <!-- Drawer -->
+        <!-- TODO: Change the position of the layout to start on rtl mode -->
         <mat-drawer
             class="w-full dark:bg-gray-900 sm:w-100"
             [mode]="isScreenSmall ? 'side' : 'over'"
             [autoFocus]="false"
-            [opened]="reportMode"
+            [opened]="opened"
             [position]="'end'"
             #matDrawer
         >
@@ -144,6 +145,7 @@
                         >
                             <app-requests-table
                                 (selectRow)="getDataFromSelectedRow($event)"
+                                [reportSideBarState]="opened"
                             ></app-requests-table>
                         </mat-tab>
                     </mat-tab-group>
