@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -11,6 +11,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class InqueryTypeComponent implements OnInit, OnDestroy
 {
+    @Output() showInquiry=  new EventEmitter<boolean>();
     @ViewChild('drawer') drawer: MatDrawer;
     drawerMode: 'over' | 'side' = 'side';
     drawerOpened: boolean = true;
@@ -125,5 +126,8 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     trackByFn(index: number, item: any): any
     {
         return item.id || index;
+    }
+  public  showDetails(event): void{
+ this.showInquiry.emit(event);
     }
 }
