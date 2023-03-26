@@ -71,7 +71,6 @@ export const appRoutes: Route[] = [
             {path: 'requests',children:[
                 {path:'history',loadChildren:()=>  import('app/modules/admin/requests/previous-requests/previous-requests.module').then(m => m.PreviousRequestsModule),},
                 {path:'new',loadChildren:()=>  import('app/modules/admin/requests/new-request/new-request.module').then(m => m.NewRequestModule),},
-            //  {path: 'chat', loadChildren: () => import('app/modules/admin/requests/new-request/chat/chat.module').then(m => m.ChatModule)},
             ]},
         ],
     },

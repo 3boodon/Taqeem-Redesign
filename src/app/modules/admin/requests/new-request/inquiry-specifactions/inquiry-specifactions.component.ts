@@ -1,4 +1,4 @@
-import {  ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     selector       : 'inquiry-specifactions',
     templateUrl    : './inquiry-specifactions.component.html',
     // encapsulation  : ViewEncapsulation.None,
-    // changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InquirySpecifactionsComponent implements OnInit, OnDestroy
 {

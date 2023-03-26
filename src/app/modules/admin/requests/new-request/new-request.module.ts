@@ -8,6 +8,8 @@ import { InqueryTypeComponent } from './inquery-type/inquery-type.component';
 import { InquiryInformationComponent } from './inquiry-information/inquiry-information.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { InquirySpecifactionsComponent } from './inquiry-specifactions/inquiry-specifactions.component';
+import { SidebarReportModule } from 'app/modules/common/sidebar-report/sidebar-report.module';
+
 
 // import { newRequesrRoutes } from './new-request.routing';
 
@@ -43,7 +45,8 @@ const newRequesrRoutes: Route[] = [
         MatStepperModule,
         MatSlideToggleModule,
         MatMomentDateModule,
-        SharedModule
+        SharedModule,
+        SidebarReportModule
     ],
 })
 export class NewRequestModule {}

@@ -49,7 +49,7 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
             {
                 id         : 'inquiry-specifactions',
                 icon       : 'heroicons_outline:credit-card',
-                title      : ' Inquiry about a vehicle specifactions',
+                title      : 'Inquiry about a vehicle specifactions',
                 description: 'Search about a vehicle using its specifications and Odometer reading'
             }
         ];

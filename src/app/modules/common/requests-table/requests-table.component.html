@@ -19,7 +19,7 @@
             </mat-form-field>
             <!-- Filter Button -->
             <button
-                class="min-h-[37px] grow basis-1/4 rounded-md bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white @[540px]/table:grow-0"
+                class="min-h-[37px] grow basis-auto rounded-md bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white @[540px]/table:grow-0"
                 mat-flat-button
             >
                 <mat-icon
@@ -33,7 +33,7 @@
                 class="flex shrink-0 grow basis-90 items-center gap-3 @[900px]/table:grow-0"
             >
                 <button
-                    class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                    class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                     mat-flat-button
                     routerLink="'./..'"
                 >
@@ -47,7 +47,7 @@
                     </div>
                 </button>
                 <button
-                    class="grow rounded-md border border-solid border-tqeem-primary bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                    class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                     mat-flat-button
                     routerLink="'./..'"
                 >
@@ -74,7 +74,11 @@
         <!-- ID Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let element" class="group-hover:text-tqeem-darkPrimaryAccent transition-colors">
+            <td
+                mat-cell
+                *matCellDef="let element"
+                class="transition-colors group-hover:text-tqeem-darkPrimaryAccent"
+            >
                 {{ element.id }}
             </td>
         </ng-container>
@@ -111,7 +115,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[609px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[609px]/table:table-cell"
             >
                 {{ element.model }}
             </td>
@@ -129,7 +133,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[609px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[609px]/table:table-cell"
             >
                 {{ element.year }}
             </td>
@@ -149,8 +153,27 @@
                 *matCellDef="let element"
                 class="hidden @[717px]/table:table-cell"
             >
-                <div class="flex items-center gap-2 text-rose-600">
-                    <div class="h-2 w-2 rounded-full bg-rose-500"></div>
+                <div class="flex items-center gap-2"
+                [ngClass]="{
+                    'text-rose-500': element.color === 'Rose',
+                    'text-cyan-500': element.color === 'Cyan',
+                    'text-lime-500': element.color === 'Lime',
+                    'text-indigo-500': element.color === 'Indigo',
+                    'text-fuchsia-500': element.color === 'Fuchsia',
+                    'text-teal-500': element.color === 'Teal'
+                }"
+                >
+                    <div
+                        class="h-2 w-2 rounded-full"
+                        [ngClass]="{
+                            'bg-rose-500': element.color === 'Rose',
+                            'bg-cyan-500': element.color === 'Cyan',
+                            'bg-lime-500': element.color === 'Lime',
+                            'bg-indigo-500': element.color === 'Indigo',
+                            'bg-fuchsia-500': element.color === 'Fuchsia',
+                            'bg-teal-500': element.color === 'Teal'
+                        }"
+                    ></div>
                     <span>{{ element.color }}</span>
                 </div>
             </td>
@@ -168,7 +191,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[955px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[955px]/table:table-cell"
             >
                 {{ element.serialNumber }}
             </td>
@@ -208,7 +231,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[1130px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[1130px]/table:table-cell"
             >
                 {{ element.plateNumber }}
             </td>
@@ -226,7 +249,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[1230px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[1230px]/table:table-cell"
             >
                 {{ element.plateType }}
             </td>
@@ -244,7 +267,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[717px]/table:table-cell group-hover:text-tqeem-darkPrimaryAccent transition-colors"
+                class="hidden transition-colors group-hover:text-tqeem-darkPrimaryAccent @[717px]/table:table-cell"
             >
                 {{ element.omr }}
             </td>
@@ -295,8 +318,9 @@
         ></tr>
         <tr
             mat-row
-            class="cursor-pointer transition-colors group hover:bg-tqeem-highlightPrimaryAccent "
-            (click)="clickedRow()"
+            class="group cursor-pointer transition-colors hover:bg-tqeem-highlightPrimaryAccent"
+            [ngClass]="{'bg-tqeem-highlightPrimaryAccent':selection.isSelected(row)}"
+            (click)="clickedRow(row)"
             *matRowDef="let row; columns: displayedColumns"
         ></tr>
     </table>
