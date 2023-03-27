@@ -1,17 +1,26 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild,
+    ViewEncapsulation,
+} from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
-    selector       : 'inquery-type',
-    templateUrl    : './inquery-type.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'inquiry-type',
+    templateUrl: './inquiry-type.component.html',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InqueryTypeComponent implements OnInit, OnDestroy
-{
-    @Output() showInquiry=  new EventEmitter<boolean>();
+export class InquiryTypeComponent implements OnInit, OnDestroy {
+    @Output() showInquiry = new EventEmitter<boolean>();
     @ViewChild('drawer') drawer: MatDrawer;
     drawerMode: 'over' | 'side' = 'side';
     drawerOpened: boolean = true;
@@ -25,9 +34,7 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService
-    )
-    {
-    }
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -36,38 +43,34 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Setup available panels
         this.panels = [
-
             {
-                id         : 'inquiry-information',
-                icon       : 'heroicons_outline:user-circle',
-                title      : 'Inquiry about a information vehicle',
-                description: 'Search about a vehicle using serial number and Odometer reading'
+                id: 'inquiry-information',
+                icon: 'heroicons_outline:user-circle',
+                title: 'Inquiry about a information vehicle',
+                description:
+                    'Search about a vehicle using serial number and Odometer reading',
             },
             {
-                id         : 'inquiry-specifactions',
-                icon       : 'heroicons_outline:credit-card',
-                title      : 'Inquiry about a vehicle specifactions',
-                description: 'Search about a vehicle using its specifications and Odometer reading'
-            }
+                id: 'inquiry-specifications',
+                icon: 'heroicons_outline:credit-card',
+                title: 'Inquiry about a vehicle specifications',
+                description:
+                    'Search about a vehicle using its specifications and Odometer reading',
+            },
         ];
 
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
-
+            .subscribe(({ matchingAliases }) => {
                 // Set the drawerMode and drawerOpened
-                if ( matchingAliases.includes('lg') )
-                {
+                if (matchingAliases.includes('lg')) {
                     this.drawerMode = 'side';
                     this.drawerOpened = true;
-                }
-                else
-                {
+                } else {
                     this.drawerMode = 'over';
                     this.drawerOpened = false;
                 }
@@ -80,8 +83,7 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
@@ -96,13 +98,11 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
      *
      * @param panel
      */
-    goToPanel(panel: string): void
-    {
+    goToPanel(panel: string): void {
         this.selectedPanel = panel;
 
         // Close the drawer on 'over' mode
-        if ( this.drawerMode === 'over' )
-        {
+        if (this.drawerMode === 'over') {
             this.drawer.close();
         }
     }
@@ -112,8 +112,7 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
      *
      * @param id
      */
-    getPanelInfo(id: string): any
-    {
+    getPanelInfo(id: string): any {
         return this.panels.find(panel => panel.id === id);
     }
 
@@ -123,11 +122,10 @@ export class InqueryTypeComponent implements OnInit, OnDestroy
      * @param index
      * @param item
      */
-    trackByFn(index: number, item: any): any
-    {
+    trackByFn(index: number, item: any): any {
         return item.id || index;
     }
-  public  showDetails(event): void{
- this.showInquiry.emit(event);
+    public showDetails(event): void {
+        this.showInquiry.emit(event);
     }
 }

@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
 import { VehicleReport } from '../../../common/requests-table/requests-table.data';
@@ -10,11 +11,11 @@ import { VehicleReport } from '../../../common/requests-table/requests-table.dat
     encapsulation: ViewEncapsulation.None,
 })
 export class PreviousRequestsComponent implements OnInit {
+    @ViewChild(MatDrawer, { static: true }) drawer: MatDrawer;
     opened: boolean = false;
     isScreenSmall: boolean;
     vehicleReport: VehicleReport;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-
     /**
      * Constructor
      */
@@ -41,21 +42,15 @@ export class PreviousRequestsComponent implements OnInit {
      * On Drawer Backdrop Click
      */
     onBackdropClicked(): void {
-        this.opened = false;
+        this.drawer.close();
     }
 
     /**
      * Store Selected Request Data & Open Report Drawer
      */
     public getDataFromSelectedRow($event): void {
-        this.opened = true;
+        this.drawer.open();
         this.vehicleReport = $event;
     }
 
-    /**
-     * Close Report Drawer when [ X icon ] is clicked
-     */
-    public closeSidebar($event): void {
-        this.opened = $event;
-    }
 }

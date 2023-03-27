@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./sidebar-report.component.scss'],
 })
 export class SidebarReportComponent implements OnInit {
-    @Output() sidebarClose = new EventEmitter<boolean>();
+    @Output() sidebarClose = new EventEmitter();
 
     /**
      * Constructor
@@ -19,6 +19,6 @@ export class SidebarReportComponent implements OnInit {
     ngOnInit(): void {}
 
     public close(): void {
-        this.sidebarClose.emit(false);
+        this.sidebarClose.emit();
     }
 }

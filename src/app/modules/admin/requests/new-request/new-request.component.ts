@@ -1,3 +1,4 @@
+import { MatDrawer } from '@angular/material/sidenav';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import {
@@ -5,6 +6,7 @@ import {
     Component,
     ViewEncapsulation,
     OnInit,
+    ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -14,6 +16,8 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewRequestComponent implements OnInit {
+    @ViewChild(MatDrawer, { static: true }) drawer: MatDrawer;
+
     opened: boolean = false;
     isScreenSmall: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -44,16 +48,10 @@ export class NewRequestComponent implements OnInit {
      * On Drawer Backdrop Click
      */
     onBackdropClicked(): void {
-        this.opened = false;
+       this.drawer.close();
     }
 
-    /**
-     * Close Report Drawer when [ X icon ] is clicked
-     */
-    public closeSidebar($event): void {
-        this.opened = $event;
-    }
-   public showInquiryDetails(event): void{
-        this.opened=event;
+    public showInquiryDetails(event): void {
+        this.drawer.open();
     }
 }

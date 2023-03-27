@@ -306,7 +306,7 @@
             <td
                 mat-cell
                 *matCellDef="let element"
-                class="hidden @[1230px]/table:table-cell"
+                class="hidden group-hover:text-tqeem-darkPrimaryAccent @[1230px]/table:table-cell"
             >
                 {{ element.createdAt.date }} at
                 {{ element.createdAt.time }}
@@ -315,12 +315,13 @@
 
         <tr
             mat-header-row
-            *matHeaderRowDef="displayedColumns"
+            *matHeaderRowDef="displayedColumns; sticky: true"
             class="bg-tqeem-highlightPrimaryAccent"
         ></tr>
         <tr
             mat-row
             class="group cursor-pointer transition-colors hover:bg-tqeem-highlightPrimaryAccent"
+            [data-open]="selection.isSelected(row)"
             [ngClass]="{
                 'bg-tqeem-highlightPrimaryAccent': selection.isSelected(row)
             }"
