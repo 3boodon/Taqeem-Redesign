@@ -50,8 +50,4 @@ export class NewRequestComponent implements OnInit {
     onBackdropClicked(): void {
        this.drawer.close();
     }
-
-    public showInquiryDetails(event): void {
-        this.drawer.open();
-    }
 }

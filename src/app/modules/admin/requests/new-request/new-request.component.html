@@ -79,8 +79,9 @@
               cdk-scrollable
             >
                 <!-- CONTENT GOES HERE -->
+                
                 <inquiry-type
-                    (showInquiry)="showInquiryDetails($event)"
+                    (showInquiry)="matDrawer.open()"
                 ></inquiry-type>
             </main>
         </mat-drawer-content>

@@ -15,12 +15,6 @@ const routes: Route[] = [
     {
         path: '',
         component: NewRequestComponent,
-        children : [
-            {
-                path     : '',
-                component: InquiryTypeComponent,
-            }
-        ]
     },
 ];
 
