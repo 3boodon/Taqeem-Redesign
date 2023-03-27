@@ -10,7 +10,7 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthForgotPasswordComponent } from 'app/modules/auth/forgot-password/forgot-password.component';
 import { authForgotPasswordRoutes } from 'app/modules/auth/forgot-password/forgot-password.routing';
-
+import { AuthBackgroundModule } from 'app/modules/common/auth-background/auth-background.module';
 @NgModule({
     declarations: [
         AuthForgotPasswordComponent
@@ -24,6 +24,7 @@ import { authForgotPasswordRoutes } from 'app/modules/auth/forgot-password/forgo
         MatProgressSpinnerModule,
         FuseCardModule,
         FuseAlertModule,
+        AuthBackgroundModule,
         SharedModule
     ]
 })
