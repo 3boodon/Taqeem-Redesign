@@ -314,14 +314,14 @@
                     <div class="flex flex-col gap-4">
                         <!-- Success Alert -->
                         <div
-                            class="flex w-[480.5px] items-center justify-start gap-3 rounded-md border border-solid border-primary bg-tqeem-highlightPrimaryAccent p-4"
+                            class="flex items-center justify-start gap-3 rounded-md border border-solid border-primary bg-tqeem-highlightPrimaryAccent p-3"
                         >
                             <mat-icon
                                 class="text-primary icon-size-5"
                                 matPrefix
                                 [svgIcon]="'heroicons_solid:badge-check'"
                             ></mat-icon>
-                            <p class="text-base font-medium text-tqeem-primary">
+                            <p class="text-base grow font-medium text-tqeem-primary">
                                 Congrats, You have successfully completed your
                                 request 🥳
                             </p>
@@ -339,7 +339,7 @@
                             </p>
                         </div>
                         <!-- Actions -->
-                        <div class="flex justify-start gap-3">
+                        <div class="flex flex-wrap justify-start gap-3">
                             <button
                                 class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
                                 mat-flat-button

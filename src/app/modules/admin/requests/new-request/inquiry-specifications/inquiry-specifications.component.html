@@ -394,57 +394,57 @@
                     </div>
                 </mat-step>
 
-                 <!-- Done -->
-                <mat-step [editable]="false">
-                    <ng-template matStepLabel> Done </ng-template>
-                    <div class="flex flex-col gap-4">
-                        <!-- Success Alert -->
-                        <div
-                            class="flex w-[480.5px] items-center justify-start gap-3 rounded-md border border-solid border-primary bg-tqeem-highlightPrimaryAccent p-4"
-                        >
-                            <mat-icon
-                                class="text-primary icon-size-5"
-                                matPrefix
-                                [svgIcon]="'heroicons_solid:badge-check'"
-                            ></mat-icon>
-                            <p class="text-base font-medium text-tqeem-primary">
-                                Congrats, You have successfully completed your
-                                request 🥳
-                            </p>
-                        </div>
-                        <!-- Success Message -->
-                        <div class="leading-6">
-                            <h2
-                                class="text-lg font-semibold text-tqeem-darkPrimaryAccent"
+                      <!-- Done -->
+                      <mat-step [editable]="false">
+                        <ng-template matStepLabel> Done </ng-template>
+                        <div class="flex flex-col gap-4">
+                            <!-- Success Alert -->
+                            <div
+                                class="flex items-center justify-start gap-3 rounded-md border border-solid border-primary bg-tqeem-highlightPrimaryAccent p-3"
                             >
-                                Your Report is Ready
-                            </h2>
-                            <p class="font-medium text-tqeem-primaryGreyAccent">
-                                You can go back to see this report at anytime
-                                form the requests history page
-                            </p>
+                                <mat-icon
+                                    class="text-primary icon-size-5"
+                                    matPrefix
+                                    [svgIcon]="'heroicons_solid:badge-check'"
+                                ></mat-icon>
+                                <p class="text-base grow font-medium text-tqeem-primary">
+                                    Congrats, You have successfully completed your
+                                    request 🥳
+                                </p>
+                            </div>
+                            <!-- Success Message -->
+                            <div class="leading-6">
+                                <h2
+                                    class="text-lg font-semibold text-tqeem-darkPrimaryAccent"
+                                >
+                                    Your Report is Ready
+                                </h2>
+                                <p class="font-medium text-tqeem-primaryGreyAccent">
+                                    You can go back to see this report at anytime
+                                    form the requests history page
+                                </p>
+                            </div>
+                            <!-- Actions -->
+                            <div class="flex flex-wrap justify-start gap-3">
+                                <button
+                                    class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
+                                    mat-flat-button
+                                    type="button"
+                                    matStepperPrevious
+                                >
+                                    Back to Requests History
+                                </button>
+                                <button
+                                    class="px-8 bg-gradient-to-b text-white from-tqeem-primaryFrom to-tqeem-primaryTo"
+                                    mat-flat-button
+                                    type="reset"
+                                    [routerLink]="'history'"
+                                >
+                                    Make New Request
+                                </button>
+                            </div>
                         </div>
-                        <!-- Actions -->
-                        <div class="flex justify-start gap-3">
-                            <button
-                                class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
-                                mat-flat-button
-                                type="button"
-                                matStepperPrevious
-                            >
-                                Back to Requests History
-                            </button>
-                            <button
-                                class="px-8 bg-gradient-to-b text-white from-tqeem-primaryFrom to-tqeem-primaryTo"
-                                mat-flat-button
-                                type="reset"
-                                [routerLink]="'history'"
-                            >
-                                Make New Request
-                            </button>
-                        </div>
-                    </div>
-                </mat-step>
+                    </mat-step>
             </mat-vertical-stepper>
         </form>
     </div>
