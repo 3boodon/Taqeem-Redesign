@@ -4,30 +4,21 @@ import { NewRequestComponent } from './new-request.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { InqueryTypeComponent } from './inquery-type/inquery-type.component';
+import { InquiryTypeComponent } from './inquiry-type/inquiry-type.component';
 import { InquiryInformationComponent } from './inquiry-information/inquiry-information.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { InquirySpecifactionsComponent } from './inquiry-specifactions/inquiry-specifactions.component';
+import { InquirySpecificationsComponent } from './inquiry-specifications/inquiry-specifications.component';
 import { SidebarReportModule } from 'app/modules/common/sidebar-report/sidebar-report.module';
 
 
-// import { newRequesrRoutes } from './new-request.routing';
-
-// const routes: Route[] = [
-//     {
-//         path: '',
-//         component: NewRequestComponent,
-//     },
-// ];
-
-const newRequesrRoutes: Route[] = [
+const routes: Route[] = [
     {
         path: '',
         component: NewRequestComponent,
         children : [
             {
                 path     : '',
-                component: InqueryTypeComponent,
+                component: InquiryTypeComponent,
             }
         ]
     },
@@ -36,12 +27,12 @@ const newRequesrRoutes: Route[] = [
 @NgModule({
     declarations: [
         NewRequestComponent,
-        InqueryTypeComponent,
+        InquiryTypeComponent,
         InquiryInformationComponent,
-        InquirySpecifactionsComponent
+        InquirySpecificationsComponent
     ],
     imports: [
-        RouterModule.forChild(newRequesrRoutes),
+        RouterModule.forChild(routes),
         MatStepperModule,
         MatSlideToggleModule,
         MatMomentDateModule,

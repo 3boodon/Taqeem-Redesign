@@ -15,7 +15,7 @@
         >
             <!-- Report Drawer -->
             <app-sidebar-report
-                (sidebarClose)="closeSidebar($event)"
+                (sidebarClose)="matDrawer.close()"
             ></app-sidebar-report>
         </mat-drawer>
 
@@ -60,30 +60,28 @@
                 <!-- Actions -->
                 <div class="flex shrink-0 items-center">
                     <button
-                    class="ml-3 bg-gradient-to-b text-tqeem-primary rounded-full border border-tqeem-primary border-solid"
-                    mat-flat-button
-                    [routerLink]="'./..'"
-                >
-                    <mat-icon
-                        class="icon-size-5 mr-2"
-                        [svgIcon]="'feather:arrow-left'"
-                    ></mat-icon>
-                    Back to Requests History
-                </button>
+                        class="ml-3 rounded-full border border-solid border-tqeem-primary bg-gradient-to-b text-tqeem-primary"
+                        mat-flat-button
+                        [routerLink]="'./..'"
+                    >
+                        <mat-icon
+                            class="mr-2 icon-size-5"
+                            [svgIcon]="'feather:arrow-left'"
+                        ></mat-icon>
+                        Back to Requests History
+                    </button>
                 </div>
             </header>
 
-            <!-- Main // TODO: This header should be converted to a component -->
+            <!-- Main // TODO: ( Just a Reminder ) This header should be converted to a component to make it reusable  -->
             <main
-                class="relative flex-auto overflow-y-auto bg-tqeem-bodyPrimaryAccent p-0"
-                cdkScrollable
+                class=" flex-auto overflow-y-auto bg-tqeem-bodyPrimaryAccent p-0"
+              cdk-scrollable
             >
                 <!-- CONTENT GOES HERE -->
-                <div class="flex min-w-full flex-auto flex-col gap-7">
-                    <inquery-type
+                <inquiry-type
                     (showInquiry)="showInquiryDetails($event)"
-                    ></inquery-type>
-                </div>
+                ></inquiry-type>
             </main>
         </mat-drawer-content>
     </mat-drawer-container>

@@ -1,34 +1,33 @@
 import {
     ChangeDetectorRef,
     Component,
-    ElementRef,
-    EventEmitter,
+    NgZone,
     OnDestroy,
     OnInit,
+    ChangeDetectionStrategy,
     Output,
-    ViewChild,
-    ViewEncapsulation,
+    EventEmitter,
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'inquiry-information',
-    templateUrl: './inquiry-information.component.html',
-    encapsulation: ViewEncapsulation.None,
-    // changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'inquiry-specifications',
+    templateUrl: './inquiry-specifications.component.html',
+    // encapsulation  : ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InquiryInformationComponent implements OnInit, OnDestroy {
-    @ViewChild('messageInput') messageInput: ElementRef;
-
+export class InquirySpecificationsComponent implements OnInit, OnDestroy {
     @Output() showDetail = new EventEmitter<boolean>();
     drawerMode: 'over' | 'side' = 'side';
     opened: boolean = false;
-    percentage: number = 25;
+    isScreenSmall: boolean;
     drawerOpened: boolean = false;
     verticalStepperForm: FormGroup;
     isEditable = false;
+
+    public percentage: number = 25;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -37,8 +36,10 @@ export class InquiryInformationComponent implements OnInit, OnDestroy {
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private _ngZone: NgZone,
         private _formBuilder: FormBuilder
     ) {}
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -58,15 +59,16 @@ export class InquiryInformationComponent implements OnInit, OnDestroy {
                 } else {
                     this.drawerMode = 'over';
                 }
-
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
-
         // Vertical stepper form
         this.verticalStepperForm = this._formBuilder.group({
             step1: this._formBuilder.group({
-                serialNumber: ['', [Validators.required]],
+                vehicleMaker: ['', [Validators.required]],
+                vehicleModel: ['', [Validators.required]],
+                vehicleColor: ['', [Validators.required]],
+                vehicleYear: ['', [Validators.required]],
             }),
             step2: this._formBuilder.group({
                 odometer: ['', Validators.required],
@@ -81,7 +83,6 @@ export class InquiryInformationComponent implements OnInit, OnDestroy {
             }),
         });
     }
-
     /**
      * On destroy
      */
@@ -90,7 +91,6 @@ export class InquiryInformationComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
     }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -109,15 +109,6 @@ export class InquiryInformationComponent implements OnInit, OnDestroy {
     /**
      * On backdrop clicked
      */
-    onBackdropClicked(): void {
-        this.opened = false;
-    }
-    public closeSidebar($event): void {
-        this.opened = $event;
-    }
-    public openSidebar(): void {
-        this.opened = true;
-    }
     public selectionChange(event): void {
         if (event.selectedIndex === 3) {
             this.showDetail.emit(true);

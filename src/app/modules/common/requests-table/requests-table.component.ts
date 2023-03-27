@@ -38,7 +38,7 @@ export class RequestsTableComponent implements OnInit {
         'createdAt',
     ];
     selection = new SelectionModel<VehicleReport>(false, []);
-
+    selectedRow: VehicleReport;
     /**
      * Constructor
      */
@@ -65,7 +65,9 @@ export class RequestsTableComponent implements OnInit {
             }
             this.selection.deselect(row);
         }
+        this.selectedRow = row;
         // Emit request data
         this.selectRow.emit(row);
     };
+
 }

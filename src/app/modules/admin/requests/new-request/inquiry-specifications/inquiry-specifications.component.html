@@ -1,33 +1,41 @@
 <div class="flex-auto">
-    <div class="bg-card rounded-2xl">
+    <div class="bg-card space-y-2 rounded-2xl">
+        <!-- Title -->
         <h1
-            class="p-8 font-bold text-tqeem-darkPrimaryAccent text-2xl flex items-center gap-[5px]"
+            class="flex items-center gap-2 px-9 pt-6 text-2xl font-bold text-tqeem-darkPrimaryAccent"
         >
-            Complate The Form
+            Complete The Form
             <span
-                class="text-primary font-medium text-sm bg-tqeem-borderPrimaryAccent px-[5px] py-[7px] rounded-md"
-                >{{ complate }}%
+                class="rounded-md border border-solid border-tqeem-bodyPrimaryAccent bg-tqeem-highlightPrimaryAccent px-1 py-px text-md font-bold text-tqeem-primary"
+                >{{ percentage }}%
             </span>
-
         </h1>
-      
+        <!-- Wizard -->
         <form
-            class="p-4 shadow rounded overflow-hidden"
+            class="overflow-hidden rounded p-3 shadow"
             [formGroup]="verticalStepperForm"
         >
-            <mat-vertical-stepper [linear]="true"  (selectionChange)="selectionChange($event)" #verticalStepper >
+            <mat-vertical-stepper
+                [linear]="true"
+                (selectionChange)="selectionChange($event)"
+                #verticalStepper
+            >
+                <!-- Step 1 -->
                 <mat-step
                     [formGroupName]="'step1'"
                     [stepControl]="verticalStepperForm.get('step1')"
                     #verticalStepperStep1
                 >
-                    <ng-template matStepLabel>Enter Vehicle Specifications</ng-template>
+                    <ng-template matStepLabel
+                        >Enter Vehicle Specifications</ng-template
+                    >
 
-                    <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
-                     
+                    <div class=" grid w-full gap-6 sm:grid-cols-4">
                         <div class="sm:col-span-2">
                             <mat-form-field class="w-full">
-                                <mat-label class="text-primary">Vehicle Maker*</mat-label>
+                                <mat-label class="text-primary"
+                                    >Vehicle Maker</mat-label
+                                >
                                 <mat-select
                                     [formControlName]="'vehicleMaker'"
                                     [placeholder]="'Toyota'"
@@ -44,16 +52,17 @@
                                     >
                                 </mat-select>
                                 <mat-icon
-                                    class="icon-size-5 text-primary"
+                                    class="text-primary icon-size-5"
                                     matPrefix
-                                    [svgIcon]="
-                                        'heroicons_solid:truck'"
+                                    [svgIcon]="'heroicons_solid:truck'"
                                 ></mat-icon>
                             </mat-form-field>
                         </div>
                         <div class="sm:col-span-2">
                             <mat-form-field class="w-full">
-                                <mat-label class="text-primary">Vehicle Model*</mat-label>
+                                <mat-label class="text-primary"
+                                    >Vehicle Model</mat-label
+                                >
                                 <mat-select
                                     [formControlName]="'vehicleModel'"
                                     [placeholder]="'model'"
@@ -70,16 +79,17 @@
                                     >
                                 </mat-select>
                                 <mat-icon
-                                    class="icon-size-5 text-primary"
+                                    class="text-primary icon-size-5"
                                     matPrefix
-                                    [svgIcon]="
-                                        'heroicons_solid:collection'"
+                                    [svgIcon]="'heroicons_solid:collection'"
                                 ></mat-icon>
                             </mat-form-field>
                         </div>
                         <div class="sm:col-span-2">
                             <mat-form-field class="w-full">
-                                <mat-label class="text-primary">Vehicle Color*</mat-label>
+                                <mat-label class="text-primary"
+                                    >Vehicle Color</mat-label
+                                >
                                 <mat-select
                                     [formControlName]="'vehicleColor'"
                                     [placeholder]="'model'"
@@ -96,16 +106,17 @@
                                     >
                                 </mat-select>
                                 <mat-icon
-                                    class="icon-size-5 text-primary"
+                                    class="text-primary icon-size-5"
                                     matPrefix
-                                    [svgIcon]="
-                                        'heroicons_solid:color-swatch'"
+                                    [svgIcon]="'heroicons_solid:color-swatch'"
                                 ></mat-icon>
                             </mat-form-field>
                         </div>
                         <div class="sm:col-span-2">
                             <mat-form-field class="w-full">
-                                <mat-label class="text-primary">Vehicle Year*</mat-label>
+                                <mat-label class="text-primary"
+                                    >Vehicle Year</mat-label
+                                >
                                 <mat-select
                                     [formControlName]="'vehicleYear'"
                                     [placeholder]="'model'"
@@ -122,22 +133,17 @@
                                     >
                                 </mat-select>
                                 <mat-icon
-                                    class="icon-size-5 text-primary"
+                                    class="text-primary icon-size-5"
                                     matPrefix
-                                    [svgIcon]="
-                                        'heroicons_solid:calendar'"
+                                    [svgIcon]="'heroicons_solid:calendar'"
                                 ></mat-icon>
                             </mat-form-field>
                         </div>
-
-                      
-
                     </div>
-                  
 
-                    <div class="flex justify-start gap-[10px]">
+                    <div class="flex justify-start gap-3">
                         <button
-                            class="px-8 text-primary border border-solid border-primary bg-transparent hover:bg-inherit"
+                            class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
                             mat-flat-button
                             type="button"
                             matStepperPrevious
@@ -145,8 +151,8 @@
                             Cancel
                         </button>
                         <button
-                            class="px-8"
-                            mat-flat-button
+                        class="px-8 bg-gradient-to-b text-white  disabled:from-tqeem-primaryFrom/5 disabled:to-tqeem-primaryTo/5 from-tqeem-primaryFrom to-tqeem-primaryTo"
+                        mat-flat-button
                             [color]="'primary'"
                             [disabled]="
                                 verticalStepperStep1.stepControl.invalid
@@ -159,39 +165,52 @@
                     </div>
                 </mat-step>
 
+                <!-- Step 2 -->
                 <mat-step
-                class="animate-spin"
+                    class="animate-spin"
                     [formGroupName]="'step2'"
-                    [editable]="isEditable"
+                    [editable]="true"
                     [stepControl]="verticalStepperForm.get('step2')"
                     #verticalStepperStep2
                 >
-                    <ng-template matStepLabel >
+                    <ng-template matStepLabel>
                         Enter Odometer Reading
                     </ng-template>
-                    <p class="my-6 font-medium text-primary">
+                    <p class="mb-1 font-medium text-primary">
                         Please Enter Odometer Reading *
                     </p>
-                    <div class="flex flex-col gt-xs:flex-row">
-                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                    <div class="gt-xs:flex-row flex flex-col">
+                        <mat-form-field class="gt-xs:pr-3 flex-auto">
+                            <p
+                                matTextPrefix
+                                class="min-w-fit text-tqeem-primaryGreyAccent"
+                            >
+                                Odometer Reading is
+                            </p>
                             <input
-                                class="border-primary placeholder:text-tqeem-primaryGreyAccent"
+                                class="mx-1 border-primary"
                                 matInput
+                                type="number"
                                 [formControlName]="'odometer'"
-                                [placeholder]="'Odometer Reading is '"
                                 required
                             />
                             <mat-icon
-                                class="icon-size-5 text-primary"
+                                class="text-primary icon-size-5"
                                 matPrefix
                                 [svgIcon]="'heroicons_solid:truck'"
                             ></mat-icon>
+                            <p
+                                matSuffix
+                                class="min-w-fit text-tqeem-primaryGreyAccent"
+                            >
+                                Km
+                            </p>
                         </mat-form-field>
                     </div>
 
-                    <div class="flex justify-start gap-[10px]">
+                    <div class="flex justify-start gap-3">
                         <button
-                            class="px-8 text-primary border border-solid border-primary bg-transparent hover:bg-inherit"
+                            class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
                             mat-flat-button
                             type="button"
                             matStepperPrevious
@@ -199,11 +218,9 @@
                             Cancel
                         </button>
                         <button
-                            class="px-8"
-                            mat-flat-button
-                            [color]="'primary'"
+                        class="px-8 bg-gradient-to-b text-white  disabled:from-tqeem-primaryFrom/5 disabled:to-tqeem-primaryTo/5 from-tqeem-primaryFrom to-tqeem-primaryTo"
+                        mat-flat-button
                             [disabled]="
-                                verticalStepperStep2.stepControl.pristine ||
                                 verticalStepperStep2.stepControl.invalid
                             "
                             type="button"
@@ -214,15 +231,16 @@
                     </div>
                 </mat-step>
 
+                 <!-- Step 3-->
                 <mat-step
                     [formGroupName]="'step3'"
                     [stepControl]="verticalStepperForm.get('step3')"
                 >
-                    <ng-template matStepLabel>Verfication</ng-template>
+                    <ng-template matStepLabel>Verification</ng-template>
 
                     <div class="leading-6">
                         <h2
-                            class="text-lg text-tqeem-darkPrimaryAccent font-semibold"
+                            class="text-lg font-semibold text-tqeem-darkPrimaryAccent"
                         >
                             Payment Details
                         </h2>
@@ -234,7 +252,7 @@
                             rates.
                         </p>
                     </div>
-                    <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+                    <div class="mt-8 grid w-full gap-6 sm:grid-cols-4">
                         <!-- Current password -->
                         <div class="sm:col-span-4">
                             <mat-form-field
@@ -355,9 +373,9 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="flex justify-start gap-[10px]">
+                    <div class="flex justify-start gap-3">
                         <button
-                            class="px-8 text-primary border border-solid border-primary bg-transparent hover:bg-inherit"
+                            class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
                             mat-flat-button
                             type="button"
                             matStepperPrevious
@@ -365,8 +383,8 @@
                             Cancel
                         </button>
                         <button
-                            class="px-8"
-                            mat-flat-button
+                        class="px-8 bg-gradient-to-b text-white from-tqeem-primaryFrom to-tqeem-primaryTo"
+                        mat-flat-button
                             [color]="'primary'"
                             type="button"
                             matStepperNext
@@ -376,62 +394,55 @@
                     </div>
                 </mat-step>
 
-                <mat-step
-                [editable]="isEditable"
-                >
-                    <ng-template matStepLabel>
-                        Done
-                    </ng-template>
-                    <div class="flex flex-col gap-[10px]">
-
-
+                 <!-- Done -->
+                <mat-step [editable]="false">
+                    <ng-template matStepLabel> Done </ng-template>
+                    <div class="flex flex-col gap-4">
+                        <!-- Success Alert -->
                         <div
-                             class="w-[480.5px] border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"
-                         >
-                             <mat-icon
-                                 class="icon-size-5 text-primary"
-                                 matPrefix
-                                 [svgIcon]="'heroicons_solid:badge-check'"
-                             ></mat-icon>
-                             <p class="text-base text-primary">
-                                 Congrats, You have successfully completed your
-                                 request 🥳
-                             </p>
-                         </div>
-     
-                         <div class="leading-6">
-                             <h2
-                                 class="text-lg text-tqeem-darkPrimaryAccent font-semibold"
-                             >
-                                 Your Report is Ready
-                             </h2>
-                             <p
-                                 class="my-1 font-medium text-tqeem-primaryGreyAccent"
-                             >
-                                 You can go back to see this report at anytime form
-                                 the requests history page
-                             </p>
-                         </div>
-                         </div>
-                   
-                    <div class="flex justify-start gap-[10px] mt-[15px]">
-                        <button
-                            class="px-8 text-primary border border-solid border-primary bg-transparent hover:bg-inherit"
-                            mat-flat-button
-                            type="button"
-                            matStepperPrevious
+                            class="flex w-[480.5px] items-center justify-start gap-3 rounded-md border border-solid border-primary bg-tqeem-highlightPrimaryAccent p-4"
                         >
-                            Back to Requests History
-                        </button>
-                        <button
-                            class="px-8"
-                            mat-flat-button
-                            [color]="'primary'"
-                            type="reset"
-                            [routerLink]="'history'"
-                        >
-                            Make New Request
-                        </button>
+                            <mat-icon
+                                class="text-primary icon-size-5"
+                                matPrefix
+                                [svgIcon]="'heroicons_solid:badge-check'"
+                            ></mat-icon>
+                            <p class="text-base font-medium text-tqeem-primary">
+                                Congrats, You have successfully completed your
+                                request 🥳
+                            </p>
+                        </div>
+                        <!-- Success Message -->
+                        <div class="leading-6">
+                            <h2
+                                class="text-lg font-semibold text-tqeem-darkPrimaryAccent"
+                            >
+                                Your Report is Ready
+                            </h2>
+                            <p class="font-medium text-tqeem-primaryGreyAccent">
+                                You can go back to see this report at anytime
+                                form the requests history page
+                            </p>
+                        </div>
+                        <!-- Actions -->
+                        <div class="flex justify-start gap-3">
+                            <button
+                                class="border border-solid border-primary bg-transparent px-8 text-primary hover:bg-inherit"
+                                mat-flat-button
+                                type="button"
+                                matStepperPrevious
+                            >
+                                Back to Requests History
+                            </button>
+                            <button
+                                class="px-8 bg-gradient-to-b text-white from-tqeem-primaryFrom to-tqeem-primaryTo"
+                                mat-flat-button
+                                type="reset"
+                                [routerLink]="'history'"
+                            >
+                                Make New Request
+                            </button>
+                        </div>
                     </div>
                 </mat-step>
             </mat-vertical-stepper>
