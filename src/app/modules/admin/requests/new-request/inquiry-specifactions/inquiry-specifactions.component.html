@@ -1,19 +1,21 @@
 <div class="flex-auto">
     <div class="bg-card rounded-2xl">
         <h1
-            class="p-8 font-bold text-tqeem-darkPrimaryAccent text-3xl flex items-center gap-[5px]"
+            class="p-8 font-bold text-tqeem-darkPrimaryAccent text-2xl flex items-center gap-[5px]"
         >
             Complate The Form
             <span
                 class="text-primary font-medium text-sm bg-tqeem-borderPrimaryAccent px-[5px] py-[7px] rounded-md"
                 >{{ complate }}%
             </span>
+
         </h1>
+      
         <form
             class="p-4 shadow rounded overflow-hidden"
             [formGroup]="verticalStepperForm"
         >
-            <mat-vertical-stepper [linear]="true" #verticalStepper>
+            <mat-vertical-stepper [linear]="true"  (selectionChange)="selectionChange($event)" #verticalStepper >
                 <mat-step
                     [formGroupName]="'step1'"
                     [stepControl]="verticalStepperForm.get('step1')"
@@ -380,35 +382,39 @@
                     <ng-template matStepLabel>
                         Done
                     </ng-template>
+                    <div class="flex flex-col gap-[10px]">
 
-                    <div
-                        class="max-w-lg border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"
-                    >
-                        <mat-icon
-                            class="icon-size-5 text-primary"
-                            matPrefix
-                            [svgIcon]="'heroicons_solid:badge-check'"
-                        ></mat-icon>
-                        <p>
-                            Congrats, You have successfully completed your
-                            request 🥳
-                        </p>
-                    </div>
 
-                    <div class="leading-6">
-                        <h2
-                            class="text-lg text-tqeem-darkPrimaryAccent font-semibold"
-                        >
-                            Your Report is Ready
-                        </h2>
-                        <p
-                            class="my-1 font-medium text-tqeem-primaryGreyAccent"
-                        >
-                            You can go back to see this report at anytime form
-                            the requests history page
-                        </p>
-                    </div>
-                    <div class="flex justify-start gap-[10px]">
+                        <div
+                             class="w-[480.5px] border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"
+                         >
+                             <mat-icon
+                                 class="icon-size-5 text-primary"
+                                 matPrefix
+                                 [svgIcon]="'heroicons_solid:badge-check'"
+                             ></mat-icon>
+                             <p class="text-base text-primary">
+                                 Congrats, You have successfully completed your
+                                 request 🥳
+                             </p>
+                         </div>
+     
+                         <div class="leading-6">
+                             <h2
+                                 class="text-lg text-tqeem-darkPrimaryAccent font-semibold"
+                             >
+                                 Your Report is Ready
+                             </h2>
+                             <p
+                                 class="my-1 font-medium text-tqeem-primaryGreyAccent"
+                             >
+                                 You can go back to see this report at anytime form
+                                 the requests history page
+                             </p>
+                         </div>
+                         </div>
+                   
+                    <div class="flex justify-start gap-[10px] mt-[15px]">
                         <button
                             class="px-8 text-primary border border-solid border-primary bg-transparent hover:bg-inherit"
                             mat-flat-button

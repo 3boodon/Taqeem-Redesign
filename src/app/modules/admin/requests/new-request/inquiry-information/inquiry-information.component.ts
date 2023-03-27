@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, NgZone, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,9 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
 {
     @ViewChild('messageInput') messageInput: ElementRef;
 
+    @Output() showDetail = new EventEmitter<boolean>();
     drawerMode: 'over' | 'side' = 'side';
+    opened: boolean = false;
   public  complate: number=25;
     drawerOpened: boolean = false;
     verticalStepperForm: FormGroup;
@@ -133,5 +135,23 @@ export class InquiryInformationComponent implements OnInit, OnDestroy
     trackByFn(index: number, item: any): any
     {
         return item.id || index;
+    }
+
+     /**
+      * On backdrop clicked
+      */
+     onBackdropClicked(): void {
+        this.opened = false;
+    }
+    public closeSidebar($event): void {
+        this.opened = $event;
+    }
+    public openSidebar(): void {
+        this.opened = true;
+    }
+    public selectionChange(event): void {
+      if(event.selectedIndex===3){
+        this.showDetail.emit(true);
+      }
     }
 }

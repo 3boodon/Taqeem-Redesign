@@ -60,27 +60,16 @@
                 <!-- Actions -->
                 <div class="flex shrink-0 items-center">
                     <button
-                        class="bg-gradient-to-b from-tqeem-primaryFrom to-tqeem-primaryTo text-white"
-                        mat-flat-button
-                        (click)="openSidebar()"
-                    >
-                        <mat-icon
-                            class="mr-2 icon-size-5"
-                            [svgIcon]="'feather:plus'"
-                        ></mat-icon>
-                        Open Side Menu
-                    </button>
-                    <button
-                        class="ml-3 rounded-full border border-solid border-tqeem-primary bg-gradient-to-b text-tqeem-primary"
-                        mat-flat-button
-                        [routerLink]="'./..'"
-                    >
-                        <mat-icon
-                            class="mr-2 icon-size-5"
-                            [svgIcon]="'feather:arrow-left'"
-                        ></mat-icon>
-                        Back to Requests History
-                    </button>
+                    class="ml-3 bg-gradient-to-b text-tqeem-primary rounded-full border border-tqeem-primary border-solid"
+                    mat-flat-button
+                    [routerLink]="'./..'"
+                >
+                    <mat-icon
+                        class="icon-size-5 mr-2"
+                        [svgIcon]="'feather:arrow-left'"
+                    ></mat-icon>
+                    Back to Requests History
+                </button>
                 </div>
             </header>
 
@@ -91,7 +80,9 @@
             >
                 <!-- CONTENT GOES HERE -->
                 <div class="flex min-w-full flex-auto flex-col gap-7">
-                    <inquery-type></inquery-type>
+                    <inquery-type
+                    (showInquiry)="showInquiryDetails($event)"
+                    ></inquery-type>
                 </div>
             </main>
         </mat-drawer-content>

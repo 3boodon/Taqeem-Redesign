@@ -13,7 +13,7 @@
             class="p-4 shadow rounded overflow-hidden"
             [formGroup]="verticalStepperForm"
         >
-            <mat-vertical-stepper [linear]="true" #verticalStepper>
+            <mat-vertical-stepper [linear]="true" (selectionChange)="selectionChange($event)" #verticalStepper >
                 <mat-step
                     [formGroupName]="'step1'"
                     [stepControl]="verticalStepperForm.get('step1')"
@@ -25,11 +25,11 @@
                     </p>
                     <div class="flex">
                         <mat-form-field class="flex-auto">
+                            <p matTextPrefix class="text-tqeem-primaryGreyAccent w-[11.5rem]">The Serial Number is</p>
                             <input
                                 class="border-primary placeholder:text-tqeem-primaryGreyAccent"
                                 matInput
                                 [formControlName]="'serialNumber'"
-                                [placeholder]="'The Serial Number is'"
                                 required
                             />
                             <mat-icon
@@ -288,15 +288,20 @@
                         Done
                     </ng-template>
 
-                    <div
-                        class="max-w-lg border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"
+
+
+                  <div class="flex flex-col gap-[10px]">
+
+
+                   <div
+                        class="w-[480.5px] border border-solid border-primary bg-tqeem-highlightPrimaryAccent flex items-center justify-start gap-3 rounded-md p-4"
                     >
                         <mat-icon
                             class="icon-size-5 text-primary"
                             matPrefix
                             [svgIcon]="'heroicons_solid:badge-check'"
                         ></mat-icon>
-                        <p>
+                        <p class="text-base text-primary">
                             Congrats, You have successfully completed your
                             request 🥳
                         </p>
@@ -314,6 +319,7 @@
                             You can go back to see this report at anytime form
                             the requests history page
                         </p>
+                    </div>
                     </div>
                     <div class="flex justify-start gap-[10px]">
                         <button

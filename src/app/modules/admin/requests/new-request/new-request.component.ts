@@ -53,7 +53,7 @@ export class NewRequestComponent implements OnInit {
     public closeSidebar($event): void {
         this.opened = $event;
     }
-    public openSidebar(): void {
-        this.opened = true;
+   public showInquiryDetails(event): void{
+        this.opened=event;
     }
 }
