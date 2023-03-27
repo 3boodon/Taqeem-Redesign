@@ -3,7 +3,7 @@
     <div class="flex justify-between px-6 pb-6">
         <div class="flex grow flex-wrap items-center gap-3">
             <!-- Search -->
-            <mat-form-field class="sm-height mb-0 grow basis-90">
+            <mat-form-field class="sm-height mb-0 grow basis-80">
                 <input
                     class="border-tqeem-borderPrimaryAccent placeholder:text-tqeem-primaryGreyAccent"
                     matInput
@@ -28,10 +28,11 @@
                 ></mat-icon>
                 Filters
             </button>
-            <!-- Export Buttons -->
+            <!-- Export Buttons // TODO: ( Just a Reminder ) This section should be converted to a component to make it reusable  -->
             <div
-                class="flex shrink-0 grow basis-90 items-center gap-3 @[900px]/table:grow-0"
+                class="flex grow flex-wrap items-center gap-3 @[900px]/table:grow-0"
             >
+                <!-- Export As PDF Button -->
                 <button
                     class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                     mat-flat-button
@@ -46,6 +47,7 @@
                         Export as PDF
                     </div>
                 </button>
+                <!-- Export As Excel Button -->
                 <button
                     class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                     mat-flat-button
@@ -63,12 +65,11 @@
             </div>
         </div>
     </div>
-    <!-- Data Table -->
+    <!-- Main Data Table -->
     <table
         mat-table
         [dataSource]="dataSource"
         matSort
-        (matSortChange)="announceSortChange($event)"
         class="w-full table-auto text-start"
     >
         <!-- ID Column -->
@@ -153,15 +154,16 @@
                 *matCellDef="let element"
                 class="hidden @[717px]/table:table-cell"
             >
-                <div class="flex items-center gap-2"
-                [ngClass]="{
-                    'text-rose-500': element.color === 'Rose',
-                    'text-cyan-500': element.color === 'Cyan',
-                    'text-lime-500': element.color === 'Lime',
-                    'text-indigo-500': element.color === 'Indigo',
-                    'text-fuchsia-500': element.color === 'Fuchsia',
-                    'text-teal-500': element.color === 'Teal'
-                }"
+                <div
+                    class="flex items-center gap-2"
+                    [ngClass]="{
+                        'text-rose-500': element.color === 'Rose',
+                        'text-cyan-500': element.color === 'Cyan',
+                        'text-lime-500': element.color === 'Lime',
+                        'text-indigo-500': element.color === 'Indigo',
+                        'text-fuchsia-500': element.color === 'Fuchsia',
+                        'text-teal-500': element.color === 'Teal'
+                    }"
                 >
                     <div
                         class="h-2 w-2 rounded-full"
@@ -319,7 +321,9 @@
         <tr
             mat-row
             class="group cursor-pointer transition-colors hover:bg-tqeem-highlightPrimaryAccent"
-            [ngClass]="{'bg-tqeem-highlightPrimaryAccent':selection.isSelected(row)}"
+            [ngClass]="{
+                'bg-tqeem-highlightPrimaryAccent': selection.isSelected(row)
+            }"
             (click)="clickedRow(row)"
             *matRowDef="let row; columns: displayedColumns"
         ></tr>
@@ -328,7 +332,7 @@
     <mat-paginator
         [pageSizeOptions]="[15, 25, 50]"
         showFirstLastButtons
-        aria-label="Select page of periodic elements"
+        aria-label="Select page of vehicle reports"
     >
     </mat-paginator>
 </div>

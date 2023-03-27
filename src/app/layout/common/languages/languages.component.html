@@ -13,9 +13,9 @@
         <button
             mat-menu-item
             (click)="setActiveLang(lang.id)">
-            <span class="flex items-center">
+            <span class="flex gap-1 items-center">
                 <ng-container *ngTemplateOutlet="globIcon; context: {$implicit: lang.id}"></ng-container>
-                <span class="ml-3">{{lang.label}}</span>
+                <span>{{lang.label}}</span>
             </span>
         </button>
     </ng-container>
@@ -37,7 +37,7 @@
 <ng-template
     let-lang
     #globIcon>
-    <span class="relative w-6 flex place-items-center overflow-hidden">
+    <span class="relative flex place-items-center overflow-hidden">
         <mat-icon [svgIcon]="'heroicons_outline:globe-alt'"></mat-icon>
     </span>
 </ng-template>

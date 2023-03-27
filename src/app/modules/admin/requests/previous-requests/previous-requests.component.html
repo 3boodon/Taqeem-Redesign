@@ -4,7 +4,7 @@
         (backdropClick)="onBackdropClicked()"
     >
         <!-- Drawer -->
-        <!-- TODO: Change the position of the layout to start on rtl mode -->
+        <!-- TODO: the [ position ] of the layout should be dynamic depending on the page direction -->
         <mat-drawer
             class="w-full dark:bg-gray-900 sm:w-100"
             [mode]="isScreenSmall ? 'side' : 'over'"
@@ -13,7 +13,7 @@
             [position]="'end'"
             #matDrawer
         >
-            <!-- Demo sidebar -->
+            <!-- Report Drawer -->
             <app-sidebar-report
                 (sidebarClose)="closeSidebar($event)"
             ></app-sidebar-report>
@@ -21,10 +21,11 @@
 
         <!-- Drawer content -->
         <mat-drawer-content class="flex flex-col overflow-hidden">
-            <!-- Header // TODO: This header should be converted to a component -->
+            <!-- Header // TODO: ( Just a Reminder ) This header should be converted to a component to make it reusable  -->
             <header
                 class="flex flex-0 flex-col gap-4 bg-white p-6 dark:bg-transparent sm:flex-row sm:items-center sm:justify-between sm:py-12 sm:px-10"
             >
+                <!-- Title & Breadcrumbs -->
                 <div class="min-w-0 flex-1">
                     <!-- Breadcrumbs -->
                     <div>
@@ -47,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Title -->
+                    <!-- Page Title -->
                     <div class="mt-2">
                         <h2
                             class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
@@ -72,17 +73,20 @@
                 </div>
             </header>
 
-            <!-- fuseScrollbar="true"
-            [fuseScrollbarOptions]="{wheelPropagation: false, suppressScrollX: true}" -->
-            <!-- Main // TODO: This header should be converted to a component -->
+            <!-- Main // TODO: ( Just a Reminder ) This header should be converted to a component to make it reusable  -->
             <main
-                class="flex-auto overflow-y-auto bg-tqeem-bodyPrimaryAccent p-6 sm:p-10"
-                cdkScrollable
+                class="flex-auto bg-tqeem-bodyPrimaryAccent p-6 sm:p-10"
+                fuseScrollbar="true"
+                [fuseScrollbarOptions]="{
+                    wheelPropagation: false,
+                    suppressScrollX: true
+                }"
             >
                 <!-- CONTENT GOES HERE -->
                 <div class="flex min-w-full flex-auto flex-col gap-7">
                     <!-- Statistics Section -->
                     <section class="flex flex-wrap items-stretch gap-7">
+                        <!-- All Requests -->
                         <div
                             class="flex grow basis-60 flex-col justify-center rounded-xl bg-white p-6"
                         >
@@ -94,6 +98,7 @@
                                 >All Requests</span
                             >
                         </div>
+                        <!-- Inquiry about a information vehicle -->
                         <div
                             class="flex grow basis-60 flex-col justify-center rounded-xl bg-white p-6"
                         >
@@ -105,6 +110,7 @@
                                 >Inquiry about a information vehicle</span
                             >
                         </div>
+                        <!-- Inquiry about a vehicle specifications -->
                         <div
                             class="flex grow basis-60 flex-col justify-center rounded-xl bg-white p-6"
                         >
@@ -117,32 +123,70 @@
                             >
                         </div>
                     </section>
-                    <!-- Table -->
+                    <!-- Tabs -->
                     <mat-tab-group
                         animationDuration="0ms"
-                        class="grow rounded-xl bg-white"
+                        class="grow overflow-hidden rounded-xl bg-white"
                         dynamicHeight="true"
                     >
-                        <mat-tab label="All">
-                            <!-- Main Table -->
+                        <!-- All Requests Tab -->
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <div
+                                    class="flex items-center gap-1 text-tqeem-primary"
+                                >
+                                    <span class="text-[14px] font-medium"
+                                        >All</span
+                                    >
+                                    <span
+                                        class="rounded-sm bg-tqeem-borderPrimaryAccent px-1 py-px text-sm font-bold"
+                                        >250</span
+                                    >
+                                </div>
+                            </ng-template>
+                            <!-- All Requests Table -->
                             <ng-template matTabContent>
                                 <app-requests-table
                                     (selectRow)="getDataFromSelectedRow($event)"
                                 ></app-requests-table>
                             </ng-template>
                         </mat-tab>
-                        <mat-tab
-                            label="Vehicle Information"
-                            class="rounded-none"
-                        >
+                        <!-- Vehicle Information Requests Tab -->
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <div
+                                    class="flex items-center gap-1 text-tqeem-primaryGreyAccent"
+                                >
+                                    <span class="text-[14px] font-medium"
+                                        >Vehicle Information</span
+                                    >
+                                    <span
+                                        class="rounded-sm bg-tqeem-borderPrimaryAccent px-1 py-px text-sm font-bold"
+                                        >150</span
+                                    >
+                                </div>
+                            </ng-template>
+                             <!-- Vehicle Information Requests Table -->
                             <app-requests-table
                                 (selectRow)="getDataFromSelectedRow($event)"
                             ></app-requests-table>
                         </mat-tab>
-                        <mat-tab
-                            label="Vehicle Specifications"
-                            class="rounded-none"
-                        >
+                        <!-- Vehicle Specifications Tab -->
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <div
+                                    class="flex items-center gap-1 text-tqeem-primaryGreyAccent"
+                                >
+                                    <span class="text-[14px] font-medium"
+                                        >Vehicle Specifications</span
+                                    >
+                                    <span
+                                        class="rounded-sm bg-tqeem-borderPrimaryAccent px-1 py-px text-sm font-bold"
+                                        >100</span
+                                    >
+                                </div>
+                            </ng-template>
+                            <!-- Vehicle Specifications Table -->
                             <app-requests-table
                                 (selectRow)="getDataFromSelectedRow($event)"
                                 [reportSideBarState]="opened"
