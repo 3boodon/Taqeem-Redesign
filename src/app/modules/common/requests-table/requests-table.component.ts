@@ -1,4 +1,3 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
     Component,
     OnInit,
@@ -9,8 +8,8 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
-import { PeriodicElement, ELEMENT_DATA } from './requests-table.data';
+import { MatSort } from '@angular/material/sort';
+import { VehicleReport, ELEMENT_DATA } from './requests-table.data';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
@@ -20,15 +19,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class RequestsTableComponent implements OnInit {
     @ViewChild(MatSort, { static: true }) sort: MatSort;
-
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-    @Output() selectRow = new EventEmitter<PeriodicElement>();
-
     @Input() reportSideBarState: boolean;
-
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+    @Output() selectRow = new EventEmitter<VehicleReport>();
+    dataSource = new MatTableDataSource<VehicleReport>(ELEMENT_DATA);
     displayedColumns: string[] = [
         'id',
         'maker',
@@ -43,37 +37,35 @@ export class RequestsTableComponent implements OnInit {
         'price',
         'createdAt',
     ];
+    selection = new SelectionModel<VehicleReport>(false, []);
 
-    selection = new SelectionModel<PeriodicElement>(false, []);
+    /**
+     * Constructor
+     */
+    constructor() {}
 
-    constructor(private _liveAnnouncer: LiveAnnouncer) {}
-
+    // -----------------------------------------------------------------------------------------------------
+    // @ Lifecycle hooks
+    // -----------------------------------------------------------------------------------------------------
     ngOnInit(): void {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
 
-    /** Announce the change in sort state for assistive technology. */
-    announceSortChange(sortState: Sort): void {
-        // This example uses English messages. If your application supports
-        // multiple language, you would internationalize these strings.
-        // Furthermore, you can customize the message to add additional
-        // details about the values being sorted.
-        if (sortState.direction) {
-            this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-        } else {
-            this._liveAnnouncer.announce('Sorting cleared');
-        }
-    }
 
-    clickedRow = (row): void => {
+    public clickedRow(row): void {
         if (!this.selection.isSelected(row)) {
-            if(this.reportSideBarState ) {return;};
+            if (this.reportSideBarState) {
+                return;
+            }
             this.selection.select(row);
         } else {
-            if(!this.reportSideBarState ) {return;};
+            if (!this.reportSideBarState) {
+                return;
+            }
             this.selection.deselect(row);
         }
+        // Emit request data
         this.selectRow.emit(row);
     };
 }

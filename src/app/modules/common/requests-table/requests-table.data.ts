@@ -1,5 +1,4 @@
-
-export interface PeriodicElement {
+export interface VehicleReport {
     id: number;
     maker: string;
     model: string;
@@ -13,7 +12,7 @@ export interface PeriodicElement {
     price: number;
     createdAt: { date: string; time: string };
 }
-export const ELEMENT_DATA: PeriodicElement[] = [
+export const ELEMENT_DATA: VehicleReport[] = [
     {
         id: 1234,
         maker: 'Toyota',

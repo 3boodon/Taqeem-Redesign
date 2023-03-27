@@ -74,14 +74,10 @@
 /*  @ Paginator
 /* ----------------------------------------------------------------------------------------------------- */
 .mat-paginator {
-
+@apply @container;
     .mat-paginator-container {
         padding: 8px 16px;
         justify-content: space-between;
-
-        @screen sm {
-            justify-content: space-between;
-        }
 
         /* Page size select */
         .mat-paginator-page-size {
@@ -93,9 +89,7 @@
                 display: none;
                 margin-right: 12px;
 
-                @screen sm {
-                    display: block;
-                }
+                @apply @[509px]:block;
             }
 
             .mat-paginator-page-size-select {
@@ -120,7 +114,7 @@
             }
             .mat-paginator-range-label {
                 margin: 0px;
-                @apply ltr:mr-2 rtl:ml-2 hidden sm:block;
+                @apply ltr:mr-2 rtl:ml-2 hidden @[422px]:block;
             }
         }
     }

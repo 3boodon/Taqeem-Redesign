@@ -1,11 +1,7 @@
-import {
-    Component,
-    ViewEncapsulation,
-    OnInit,
-} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Subject, takeUntil } from 'rxjs';
-import { PeriodicElement } from '../../../common/requests-table/requests-table.data';
+import { VehicleReport } from '../../../common/requests-table/requests-table.data';
 
 @Component({
     selector: 'requests',
@@ -13,19 +9,16 @@ import { PeriodicElement } from '../../../common/requests-table/requests-table.d
     styleUrls: ['./previous-requests.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 export class PreviousRequestsComponent implements OnInit {
     opened: boolean = false;
     isScreenSmall: boolean;
-    vehicleReport: PeriodicElement;
+    vehicleReport: VehicleReport;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
      * Constructor
      */
-    constructor(
-        private _fuseMediaWatcherService: FuseMediaWatcherService,
-    ) {}
+    constructor(private _fuseMediaWatcherService: FuseMediaWatcherService) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -34,7 +27,7 @@ export class PreviousRequestsComponent implements OnInit {
     /**
      * On init
      */
-    ngOnInit() {
+    ngOnInit(): void {
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -45,18 +38,24 @@ export class PreviousRequestsComponent implements OnInit {
     }
 
     /**
-     * On backdrop clicked
+     * On Drawer Backdrop Click
      */
     onBackdropClicked(): void {
         this.opened = false;
     }
 
-    public getDataFromSelectedRow($event) {
+    /**
+     * Store Selected Request Data & Open Report Drawer
+     */
+    public getDataFromSelectedRow($event): void {
         this.opened = true;
         this.vehicleReport = $event;
     }
 
-    public closeSidebar($event) {
+    /**
+     * Close Report Drawer when [ X icon ] is clicked
+     */
+    public closeSidebar($event): void {
         this.opened = $event;
     }
 }

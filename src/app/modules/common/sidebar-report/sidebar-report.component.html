@@ -1,4 +1,4 @@
-<div class="flex flex-auto flex-col gap-6 p-5" >
+<div class="flex flex-auto flex-col gap-6 p-5">
     <header class="items-center-justify-between flex">
         <!-- Header Title -->
         <div class="grow">
@@ -48,58 +48,110 @@
                 <h3 class="text-lg font-bold text-tqeem-darkPrimaryAccent">
                     Vehicle Report
                 </h3>
-                <span
-                    class="text-md font-medium text-tqeem-primaryGreyAccent"
+                <span class="text-md font-medium text-tqeem-primaryGreyAccent"
                     >All details about vehicle</span
                 >
             </div>
         </header>
-        <!-- Export Buttons -->
-        <div class="flex shrink-0 items-center gap-3">
-            <button
-                class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
-                mat-flat-button
-                routerLink="'./..'"
-            >
-            <div class="flex gap-2 items-center">
 
-                <img class="h-6" src="assets/icons/pdf.png" alt="PDF Icon" />
-                Export as PDF
-            </div>
-            </button>
+        <!-- Export Buttons // TODO: ( Just a Reminder ) This section should be converted to a component to make it reusable  -->
+        <div class="flex shrink-0 flex-wrap items-center gap-3">
+             <!-- Export As PDF Button -->
             <button
                 class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
                 mat-flat-button
                 routerLink="'./..'"
             >
-            <div class="flex gap-2 items-center">
-                <img class="w-6" src="assets/icons/excel.png" alt="Excel Icon" />
-                Export as EXCEL
+                <div class="flex items-center gap-2">
+                    <img
+                        class="h-6"
+                        src="assets/icons/pdf.png"
+                        alt="PDF Icon"
+                    />
+                    Export as PDF
+                </div>
+            </button>
+             <!-- Export As Excel Button -->
+            <button
+                class="grow rounded-md border border-solid border-tqeem-borderPrimaryAccent bg-tqeem-highlightPrimaryAccent text-tqeem-primary"
+                mat-flat-button
+                routerLink="'./..'"
+            >
+                <div class="flex items-center gap-2">
+                    <img
+                        class="w-6"
+                        src="assets/icons/excel.png"
+                        alt="Excel Icon"
+                    />
+                    Export as EXCEL
                 </div>
             </button>
         </div>
 
-        <!-- Info -->
-        <div class="flex flex-col  border-b divide-y font-medium">
+        <!-- Vehicle Info -->
+        <div class="flex flex-col divide-y border-b font-medium">
+            <!-- Maker -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Maker</div>
+                <div class="text-tqeem-primaryGreyAccent">Maker</div>
                 <div>Toyota</div>
             </div>
+            <!-- Model -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Model</div>
-                <div>Civik</div>
+                <div class="text-tqeem-primaryGreyAccent">Model</div>
+                <div>Corolla</div>
             </div>
+            <!-- Year -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Year</div>
+                <div class="text-tqeem-primaryGreyAccent">Year</div>
                 <div>1998</div>
             </div>
+            <!-- Color -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Color</div>
-                <div>Red</div>
+                <div class="text-tqeem-primaryGreyAccent">Color</div>
+                <div class="flex items-center gap-2 text-rose-500">
+                    <div class="h-2 w-2 rounded-full bg-rose-500"></div>
+                    <span>Rose</span>
+                </div>
             </div>
+            <!-- Serial Number -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Maker</div>
-                <div>Toyota</div>
+                <div class="text-tqeem-primaryGreyAccent">Serial Number</div>
+                <div>558776698</div>
+            </div>
+            <!-- Plate Number -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Plate Number</div>
+                <div>HGY 987</div>
+            </div>
+            <!-- Plate Type -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Plate Type</div>
+                <div>Private</div>
+            </div>
+            <!-- Weight -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Weight</div>
+                <div>28kg</div>
+            </div>
+            <!-- Load -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Load</div>
+                <div>25kg</div>
+            </div>
+            <!-- Accidents  -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Accidents</div>
+                <div>0 Accidents</div>
+            </div>
+            <!-- Insurance  -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Insurance</div>
+                <div>With Insurance</div>
+            </div>
+            <!-- Odometer Reading -->
+            <div class="flex items-center justify-between py-3">
+                <div class="text-tqeem-primaryGreyAccent">Odometer Reading</div>
+                <div>25543254</div>
             </div>
         </div>
     </section>
@@ -109,36 +161,39 @@
         <header class="items-center-justify-between flex">
             <div class="grow">
                 <h3 class="text-lg font-bold text-tqeem-darkPrimaryAccent">
-                    Vehicle Report
+                    Request Details
                 </h3>
-                <span
-                    class="text-md font-medium text-tqeem-primaryGreyAccent"
-                    >All details about vehicle</span
+                <span class="text-md font-medium text-tqeem-primaryGreyAccent"
+                    >All details about request</span
                 >
             </div>
         </header>
-     
-        <!-- Info -->
-        <div class="flex flex-col  border-b divide-y font-medium">
+
+        <!-- Request Info -->
+        <div class="flex flex-col divide-y border-b font-medium">
+            <!-- Request ID -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Maker</div>
-                <div>Toyota</div>
+                <div class="text-tqeem-primaryGreyAccent">Request ID</div>
+                <div>2254873</div>
             </div>
+            <!-- Created By -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Model</div>
-                <div>Civik</div>
+                <div class="text-tqeem-primaryGreyAccent">Created By</div>
+                <div>Ahmed Said</div>
             </div>
+            <!-- Created At -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Year</div>
-                <div>1998</div>
+                <div class="text-tqeem-primaryGreyAccent">Created At</div>
+                <div>25 Apr, 2023 at 3:00pm</div>
             </div>
+            <!-- Status -->
             <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Color</div>
-                <div>Red</div>
-            </div>
-            <div class="flex items-center justify-between py-3">
-                <div class="text-secondary">Maker</div>
-                <div>Toyota</div>
+                <div class="text-tqeem-primaryGreyAccent">Status</div>
+                <span
+                    class="flex h-[30px] max-w-fit place-items-center rounded-full bg-tqeem-Status-successAccent px-3 text-tqeem-Status-success"
+                >
+                    Active
+                </span>
             </div>
         </div>
     </section>

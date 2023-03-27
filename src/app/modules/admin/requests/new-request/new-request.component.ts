@@ -1,5 +1,5 @@
 import { Subject, takeUntil } from 'rxjs';
-import { FuseMediaWatcherService } from './../../../../../@fuse/services/media-watcher/media-watcher.service';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -23,6 +23,10 @@ export class NewRequestComponent implements OnInit {
      */
     constructor(private _fuseMediaWatcherService: FuseMediaWatcherService) {}
 
+    // -----------------------------------------------------------------------------------------------------
+    // @ Lifecycle hooks
+    // -----------------------------------------------------------------------------------------------------
+
     /**
      * On init
      */
@@ -37,11 +41,15 @@ export class NewRequestComponent implements OnInit {
     }
 
     /**
-     * On backdrop clicked
+     * On Drawer Backdrop Click
      */
     onBackdropClicked(): void {
         this.opened = false;
     }
+
+    /**
+     * Close Report Drawer when [ X icon ] is clicked
+     */
     public closeSidebar($event): void {
         this.opened = $event;
     }

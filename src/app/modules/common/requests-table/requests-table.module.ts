@@ -6,16 +6,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RequestsTableComponent } from './requests-table.component';
 
-
 @NgModule({
-  declarations: [RequestsTableComponent],
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    SharedModule
-  ],
-  exports:[RequestsTableComponent]
+    declarations: [RequestsTableComponent],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        SharedModule,
+    ],
+    exports: [RequestsTableComponent],
 })
-export class RequestsTableModule { }
+export class RequestsTableModule {}
